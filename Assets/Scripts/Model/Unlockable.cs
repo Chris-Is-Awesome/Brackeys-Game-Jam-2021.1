@@ -2,20 +2,115 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Model
+namespace UnityEngine 
 {
-    public class Unlockable
+    public class Unlockable : MonoBehaviour
     {
-        private Dictionary<UnlockableTypeEnum, Int64> requirements = new Dictionary<UnlockableTypeEnum, Int64>();
+        private List<UnlockableType> requirements = new List<UnlockableType>();
+        private Dictionary<AttributeTypeEnum, long> requiredAttributes = new Dictionary<AttributeTypeEnum, long>();
 
-        public Unlockable(Dictionary<UnlockableTypeEnum, Int64> requirements)
+        public Unlockable(List<UnlockableType> requirements)
         {
             this.requirements = requirements;
         }
-        
-        public bool IsUnlocked(Dictionary<UnlockableTypeEnum, Int64> current)
+
+        public Unlockable() {
+            
+        }
+
+        public void SetRequirements(List<UnlockableType> requirements)
         {
-            return requirements.All(x => current.ContainsKey(x.Key) && current[x.Key].CompareTo(x.Value) >= 0);
+            this.requirements = requirements;
+        }
+
+        public void AddOrUpdateRequirement(UnlockableTypeEnum unlockableTypeEnum, long levelOrId)
+        {
+            var requirement = requirements.FirstOrDefault(x => x._unlockableType == unlockableTypeEnum);
+            if (requirement != null)
+            {
+                requirement._value = levelOrId;
+            }
+            else
+            {
+                UnlockableType unlockableType = new UnlockableType(unlockableTypeEnum, levelOrId);
+                requirements.Add(unlockableType);
+            }
+        }
+
+        public void AddOrUpdateRequiredAttribute(AttributeTypeEnum attributeTypeEnum, long level)
+        {
+            requiredAttributes[attributeTypeEnum] = level;
+        }
+
+        public List<UnlockableType> GetRequirementsByUnlockableType(UnlockableTypeEnum unlockableTypeEnum)
+        {
+            var requirementsByUnlockableType = requirements.Where(x => x._unlockableType == unlockableTypeEnum);
+            if (requirementsByUnlockableType != null)
+            {
+                return requirementsByUnlockableType.ToList();
+            }
+            return new List<UnlockableType>();
+        }
+        
+        public List<UnlockableType> GetAllRequirements()
+        {
+            var allRequirements = requirements.Where(x => x._unlockableType != null);
+            if (allRequirements != null)
+            {
+                return allRequirements.ToList();
+            }
+
+            return new List<UnlockableType>();
+        }
+
+        public Dictionary<AttributeTypeEnum, long> GetAllRequiredAttributes()
+        {
+            Dictionary<AttributeTypeEnum, long> reqAttrs = new Dictionary<AttributeTypeEnum, long>();
+            foreach (var requiredAttribute in requiredAttributes)
+            {
+                reqAttrs[requiredAttribute.Key] = requiredAttribute.Value;
+            }
+
+            return reqAttrs;
+        }
+
+        public bool IsUnlocked(List<UnlockableType> current, Dictionary<AttributeTypeEnum, long> currentAttributes)
+        {
+            bool result = true;
+            foreach (var requirement in requirements)
+            {
+                if (requirement._unlockableType == UnlockableTypeEnum.Skill)
+                {
+                    var currentReq = current.FirstOrDefault(x =>
+                        x._unlockableType == UnlockableTypeEnum.Skill && x._value == requirement._value);
+                    if (currentReq == null)
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+
+                if (requirement._unlockableType == UnlockableTypeEnum.Level)
+                {
+                    var currentReq = current.FirstOrDefault(x =>
+                        x._unlockableType == UnlockableTypeEnum.Level && x._value >= requirement._value);
+                    if (currentReq == null)
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+
+            foreach (var requiredAttribute in requiredAttributes)
+            {
+                if (!currentAttributes.ContainsKey(requiredAttribute.Key) || currentAttributes[requiredAttribute.Key] < requiredAttribute.Value)
+                {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace Model
+﻿namespace UnityEngine 
 {
     public enum UnlockableTypeEnum
     {
         Level,
-        Skill,
-        Attribute
+        Skill
     }
 }
