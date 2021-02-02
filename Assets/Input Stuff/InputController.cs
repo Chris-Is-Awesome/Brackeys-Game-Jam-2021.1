@@ -188,6 +188,33 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Testing"",
+            ""id"": ""1caa4020-a621-4a46-9106-5e3dac90e607"",
+            ""actions"": [
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""7de1ef84-b55e-444e-ad6b-88ad7b098b17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1b7ae760-6d97-430f-bc66-6d85355e931f"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -225,6 +252,9 @@ public class @InputController : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        // Testing
+        m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
+        m_Testing_Reset = m_Testing.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -319,6 +349,39 @@ public class @InputController : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Testing
+    private readonly InputActionMap m_Testing;
+    private ITestingActions m_TestingActionsCallbackInterface;
+    private readonly InputAction m_Testing_Reset;
+    public struct TestingActions
+    {
+        private @InputController m_Wrapper;
+        public TestingActions(@InputController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Reset => m_Wrapper.m_Testing_Reset;
+        public InputActionMap Get() { return m_Wrapper.m_Testing; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestingActions set) { return set.Get(); }
+        public void SetCallbacks(ITestingActions instance)
+        {
+            if (m_Wrapper.m_TestingActionsCallbackInterface != null)
+            {
+                @Reset.started -= m_Wrapper.m_TestingActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_TestingActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_TestingActionsCallbackInterface.OnReset;
+            }
+            m_Wrapper.m_TestingActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
+            }
+        }
+    }
+    public TestingActions @Testing => new TestingActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -342,5 +405,9 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface ITestingActions
+    {
+        void OnReset(InputAction.CallbackContext context);
     }
 }

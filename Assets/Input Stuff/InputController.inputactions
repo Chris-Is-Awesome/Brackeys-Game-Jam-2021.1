@@ -175,6 +175,33 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Testing",
+            "id": "1caa4020-a621-4a46-9106-5e3dac90e607",
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "7de1ef84-b55e-444e-ad6b-88ad7b098b17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1b7ae760-6d97-430f-bc66-6d85355e931f",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Animator selfAnimator;
 	[SerializeField] Rigidbody2D selfRigidbody;
 	[SerializeField] CircleCollider2D groundCheck;
+	[SerializeField] CinemachineVirtualCamera virtualCamera;
 
 	[Header("Physics")]
 	[SerializeField] float airGravity;
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
 		inputController = new InputController();
 		inputController.Player.Jump.started += ctx => Jump();
 		inputController.Player.Pause.started += ctx => Pause();
+		inputController.Testing.Reset.started += ctx => Reset();
 	}
 
 	private void OnEnable()
@@ -91,6 +95,12 @@ public class PlayerController : MonoBehaviour
 		Debug.Break();
 	}
 
+	private void Reset()
+	{
+		Debug.Log("Resetting scene.");
+		SceneManager.LoadScene("Test");
+	}
+
 	private void OnCollisionEnter2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Platform"))
@@ -119,5 +129,15 @@ public class PlayerController : MonoBehaviour
 				selfAnimator.SetBool("isGrounded", false);
 			}
 		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.CompareTag("CameraTrackStop")) virtualCamera.Follow = null;
+	}
+
+	private void OnTriggerExit2D(Collider2D other)
+	{
+		if (other.CompareTag("CameraTrackStop")) Reset();
 	}
 }
