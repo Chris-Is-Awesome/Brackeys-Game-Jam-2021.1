@@ -22,6 +22,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Fast Fall",
+                    "type": "Button",
+                    "id": "f17b7b2a-745e-486c-adbe-b4b99f62007c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "8dbc07f9-243c-48eb-abda-f37c95e51522",
@@ -173,6 +181,39 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "db5de039-8a4e-4f14-b28b-e4396297431d",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Fast Fall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27377a98-dc69-4c21-b72b-f3d7862dd2be",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Fast Fall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0568450c-3f25-4c0a-a79c-4ce223d0389f",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Fast Fall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

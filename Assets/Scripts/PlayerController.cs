@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using Imports;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class PlayerController : MonoBehaviour
 	{
 		Idle,
 		Run,
-		Air,
+		Jump,
+		Fall,
 		Die
 	}
 
@@ -24,19 +26,27 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float gravity;
 	[SerializeField] float moveSpeed;
 	[SerializeField] float jumpForce;
+	[SerializeField] float maxJumpTime;
+	private float currJumpTime;
+	[SerializeField] float fastFallSpeed;
 
 	[Header("Debug")]
 	[SerializeField] PlayerStates playerState;
 	[SerializeField] bool isGrounded;
-	[SerializeField] bool touchingWall;
+	[SerializeField] bool isFastFalling;
+	private bool isJumping;
+	private bool isMoving;
+	[ConditionalField("isMoving", false, true)] private float direction;
 
 	private void Awake()
 	{
 		inputController = new InputController();
-		inputController.Player.Jump.started += ctx => Jump();
+		inputController.Player.FastFall.started += ctx => DoFastFall(true);
+		inputController.Player.FastFall.canceled += ctx => DoFastFall(false);
 		inputController.Player.Pause.started += ctx => Pause();
 		inputController.Testing.Reset.started += ctx => Reset();
 		selfRigidbody.gravityScale = gravity;
+		currJumpTime = maxJumpTime;
 	}
 
 	private void OnEnable()
@@ -49,52 +59,114 @@ public class PlayerController : MonoBehaviour
 		inputController.Disable();
 	}
 
-	private void FixedUpdate()
+	private void Update()
 	{
-		// Check for movement
-		float movementDirection = inputController.Player.Movement.ReadValue<float>() * Time.fixedDeltaTime;
-		if (movementDirection == 0) StoppedMoving();
-		else Move(movementDirection);
+		// Check if jumping in corner
+		if (isGrounded && Mathf.Abs(selfRigidbody.velocity.y) > 0.1) isGrounded = false;
+		if (!isGrounded && selfRigidbody.velocity.y == 0 && !isJumping && playerState != PlayerStates.Idle) ChangeState(PlayerStates.Idle);
+
+		// Check for jumping
+		isJumping = Convert.ToBoolean(inputController.Player.Jump.ReadValue<float>());
 	}
 
-	private void Move(float direction)
+	private void FixedUpdate()
+	{
+		// Handle movement
+		direction = inputController.Player.Movement.ReadValue<float>() * Time.fixedDeltaTime;
+		HandleMovement();
+
+		// Handle jumping
+		if (isJumping) HandleJump();
+	}
+
+	private void ChangeState(PlayerStates toState)
+	{
+		switch (toState)
+		{
+			case PlayerStates.Idle:
+				isGrounded = true;
+				currJumpTime = maxJumpTime;
+				if (!isFastFalling) selfRigidbody.gravityScale = gravity;
+				selfAnimator.SetBool("isGrounded", true);
+				selfAnimator.SetBool("isRunning", false);
+				break;
+			case PlayerStates.Run:
+				selfAnimator.SetBool("isRunning", true);
+				break;
+			case PlayerStates.Jump:
+				isGrounded = false;
+				selfAnimator.SetBool("isGrounded", false);
+				selfAnimator.SetTrigger("Jump");
+				break;
+			case PlayerStates.Fall:
+				isGrounded = false;
+				selfAnimator.SetBool("isGrounded", false);
+				break;
+			case PlayerStates.Die:
+				break;
+		}
+
+		playerState = toState;
+	}
+
+	private void HandleMovement()
+	{
+		if (direction != 0 && !isMoving) isMoving = true;
+		else if (direction == 0 && isMoving) isMoving = false;
+
+		if (isMoving) DoMove();
+		if (!isMoving)
+		{
+			if (selfRigidbody.velocity.x != 0) selfRigidbody.velocity = new Vector2(0, selfRigidbody.velocity.y);
+
+			if (isGrounded) ChangeState(PlayerStates.Idle);
+		}
+	}
+
+	private void DoMove()
 	{
 		// Flip sprite
 		if (direction > 0) transform.localScale = Vector3.one;
 		else if (direction < 0) transform.localScale = new Vector3(-1, 1, 1);
 
 		// Move
-		if (!touchingWall)
+		selfRigidbody.velocity = new Vector2(direction * (moveSpeed * 10), selfRigidbody.velocity.y);
+
+		if (playerState == PlayerStates.Idle) ChangeState(PlayerStates.Run);
+	}
+
+	private void HandleJump()
+	{
+		// If jumping
+		if (isJumping)
 		{
-			selfRigidbody.velocity = new Vector2(direction * (moveSpeed * 10), selfRigidbody.velocity.y);
-			
-			if (isGrounded)
+			if (currJumpTime > 0)
 			{
-				playerState = PlayerStates.Run;
-				selfAnimator.SetBool("isRunning", true);
+				DoJump();
+				currJumpTime -= Time.fixedDeltaTime;
 			}
+			else currJumpTime = 0;
 		}
 	}
 
-	private void StoppedMoving()
+	private void DoJump()
 	{
-		selfRigidbody.velocity = new Vector2(0, selfRigidbody.velocity.y);
-
-		if (isGrounded)
-		{
-			// Return to idle
-			selfAnimator.SetBool("isRunning", false);
-			playerState = PlayerStates.Idle;
-		}
+		// Jump
+		selfRigidbody.velocity = new Vector2(selfRigidbody.velocity.x, jumpForce / 2.25f);
+		ChangeState(PlayerStates.Jump);
 	}
 
-	private void Jump()
+	private void DoFastFall(bool doFastFall)
 	{
-		if (isGrounded)
+		if (doFastFall)
 		{
-			// Jump
-			selfRigidbody.AddForce(new Vector2(0f, jumpForce * 25));
-			selfAnimator.SetTrigger("Jump");
+			selfRigidbody.gravityScale += fastFallSpeed;
+			isFastFalling = true;
+		}
+		else
+		{
+			selfRigidbody.gravityScale = gravity;
+			isFastFalling = false;
 		}
 	}
 
@@ -111,18 +183,18 @@ public class PlayerController : MonoBehaviour
 		SceneManager.LoadScene("Test");
 	}
 
-	private void OnCollisionStay2D(Collision2D other)
+	private void OnCollisionEnter2D(Collision2D other)
 	{
+		// Ground check
 		if (other.gameObject.CompareTag("Platform"))
 		{
-			// Ground check
-			if (groundCheck.IsTouching(other.collider) && !touchingWall && !isGrounded && other.GetContact(0).normal.y > 0)
+			if (!isGrounded)
 			{
-				// Set player to grounded state
-				playerState = PlayerStates.Idle;
-				isGrounded = true;
-				touchingWall = false;
-				selfAnimator.SetBool("isGrounded", true);
+				if (groundCheck.IsTouching(other.collider) && other.GetContact(0).normal.y > 0 && playerState != PlayerStates.Idle)
+				{
+					// Set player to grounded state
+					ChangeState(PlayerStates.Idle);
+				}
 			}
 		}
 	}
@@ -131,12 +203,10 @@ public class PlayerController : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Platform"))
 		{
-			if (!groundCheck.IsTouching(other.collider) && isGrounded)
+			if (!groundCheck.IsTouching(other.collider) && playerState != PlayerStates.Jump && isGrounded)
 			{
 				// Set player to air state
-				playerState = PlayerStates.Air;
-				isGrounded = false;
-				selfAnimator.SetBool("isGrounded", false);
+				ChangeState(PlayerStates.Fall);
 			}
 		}
 	}
