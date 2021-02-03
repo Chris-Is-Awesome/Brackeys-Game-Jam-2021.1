@@ -21,8 +21,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] CinemachineVirtualCamera virtualCamera;
 
 	[Header("Physics")]
-	[SerializeField] float airGravity;
-	[SerializeField] float groundedGravity;
+	[SerializeField] float gravity;
 	[SerializeField] float moveSpeed;
 	[SerializeField] float jumpForce;
 
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour
 		inputController.Player.Jump.started += ctx => Jump();
 		inputController.Player.Pause.started += ctx => Pause();
 		inputController.Testing.Reset.started += ctx => Reset();
+		selfRigidbody.gravityScale = gravity;
 	}
 
 	private void OnEnable()
@@ -67,8 +67,12 @@ public class PlayerController : MonoBehaviour
 		if (!touchingWall)
 		{
 			selfRigidbody.velocity = new Vector2(direction * (moveSpeed * 10), selfRigidbody.velocity.y);
-			playerState = PlayerStates.Run;
-			selfAnimator.SetBool("isRunning", true);
+			
+			if (isGrounded)
+			{
+				playerState = PlayerStates.Run;
+				selfAnimator.SetBool("isRunning", true);
+			}
 		}
 	}
 
@@ -116,7 +120,6 @@ public class PlayerController : MonoBehaviour
 			{
 				// Set player to grounded state
 				playerState = PlayerStates.Idle;
-				selfRigidbody.gravityScale = groundedGravity;
 				isGrounded = true;
 				touchingWall = false;
 				selfAnimator.SetBool("isGrounded", true);
@@ -132,7 +135,6 @@ public class PlayerController : MonoBehaviour
 			{
 				// Set player to air state
 				playerState = PlayerStates.Air;
-				selfRigidbody.gravityScale = airGravity;
 				isGrounded = false;
 				selfAnimator.SetBool("isGrounded", false);
 			}
