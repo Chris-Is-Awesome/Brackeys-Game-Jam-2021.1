@@ -584,6 +584,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 205154029}
   gravity: 7
   moveSpeed: 60
+  runSpeed: 60
   jumpForce: 50
   maxJumpTime: 0.15
   fastFallSpeed: 1

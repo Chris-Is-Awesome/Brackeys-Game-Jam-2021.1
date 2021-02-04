@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 	[Header("Physics")]
 	[SerializeField] float gravity;
 	[SerializeField] float moveSpeed;
+	[SerializeField] float runSpeed;
 	[SerializeField] float jumpForce;
 	[SerializeField] float maxJumpTime;
 	private float currJumpTime;
@@ -43,6 +44,8 @@ public class PlayerController : MonoBehaviour
 		inputController = new InputController();
 		inputController.Player.FastFall.started += ctx => DoFastFall(true);
 		inputController.Player.FastFall.canceled += ctx => DoFastFall(false);
+		inputController.Player.Run.started += ctx => DoRun(true);
+		inputController.Player.Run.canceled += ctx => DoRun(false);
 		inputController.Player.Pause.started += ctx => Pause();
 		inputController.Testing.Reset.started += ctx => Reset();
 		selfRigidbody.gravityScale = gravity;
@@ -136,6 +139,12 @@ public class PlayerController : MonoBehaviour
 		selfRigidbody.velocity = new Vector2(direction * (moveSpeed * 10), selfRigidbody.velocity.y);
 
 		if (playerState == PlayerStates.Idle) ChangeState(PlayerStates.Run);
+	}
+
+	private void DoRun(bool doRun)
+	{
+		if (doRun) moveSpeed += runSpeed;
+		else moveSpeed -= runSpeed;
 	}
 
 	private void HandleJump()
