@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
 		Die
 	}
 
+	[Header("GameManager")]
+	[SerializeField] private static GameManager gameManager;
+
 	[Header("References")]
 	private InputController inputController;
 	[SerializeField] Animator selfAnimator;
@@ -41,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake()
 	{
+		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
 		inputController = new InputController();
 		inputController.Player.FastFall.started += ctx => DoFastFall(true);
 		inputController.Player.FastFall.canceled += ctx => DoFastFall(false);
@@ -225,11 +230,11 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("CameraTrackStop")) virtualCamera.Follow = null;
+		//if (other.CompareTag("CameraTrackStop")) virtualCamera.Follow = null;
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.CompareTag("CameraTrackStop")) Reset();
+		if (other.CompareTag("CameraTrackStop")) gameManager.GetRoomManager().ReloadStandardCheckPointSolo();
 	}
 }
