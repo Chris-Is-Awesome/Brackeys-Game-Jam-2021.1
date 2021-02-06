@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Platform
   - CameraTrackStop
+  - CheckPoint
+  - GameManager
   layers:
   - Default
   - TransparentFX
