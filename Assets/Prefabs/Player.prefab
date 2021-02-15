@@ -411,6 +411,8 @@ GameObject:
   - component: {fileID: 4159960666517806473}
   - component: {fileID: 4159960666517806476}
   - component: {fileID: 4159960666517806472}
+  - component: {fileID: 2920941217501451992}
+  - component: {fileID: 4646681876422799538}
   m_Layer: 9
   m_Name: Luna
   m_TagString: Player
@@ -426,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4159960666517806469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.687, y: -4.268, z: 0}
+  m_LocalPosition: {x: -0.687, y: -5.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159960666977272118}
@@ -591,6 +593,38 @@ MonoBehaviour:
   playerState: 0
   isGrounded: 1
   isFastFalling: 0
+--- !u!114 &2920941217501451992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4159960666517806469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb4beceb82c4544391ce5c27d50f862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateHolder: {fileID: 0}
+--- !u!114 &4646681876422799538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4159960666517806469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5754ffeab0e4c4a898eba5aa7a266f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiController: {fileID: 2920941217501451992}
+  stats:
+    maxHp: 10
+    currHp: 10
+    speedMultiplier: 1
+    damageData: {fileID: 0}
+  currentAIState: {fileID: 0}
 --- !u!1 &4159960666977272117
 GameObject:
   m_ObjectHideFlags: 0
