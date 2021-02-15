@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4bedac37d24b547ada562da17b5fdb, type: 3}
+  m_Name: ContactDamage
+  m_EditorClassIdentifier: 
+  _type: 1
+  _damage: 3
+  _tagsAffected:
+  - Player
+  _canInflictStatus: 1
+  _statusToInflict: {fileID: 11400000, guid: 867df84f2c50ffb43bce3b916f55e220, type: 2}
+  _chance: 0
