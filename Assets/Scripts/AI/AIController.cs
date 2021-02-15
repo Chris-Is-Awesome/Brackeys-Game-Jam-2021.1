@@ -46,7 +46,7 @@ public class AIController : MonoBehaviour
 
 		for (int i = 0; i < aiStates.Count; i++)
 		{
-			if (aiStates[i].IsActive) return aiStates[i];
+			if (aiStates[i].isActive) return aiStates[i];
 		}
 
 		Debug.LogWarning("No AIState is active, returning null.");

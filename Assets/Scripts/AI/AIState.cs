@@ -13,15 +13,7 @@ public class AIState : MonoBehaviour
 	[TextArea] [SerializeField] string description;
 	public string animName;
 	[SerializeField] bool isDefault;
-	[SerializeField] bool isActive;
-
-	public bool IsActive
-	{
-		get
-		{
-			return isActive;
-		}
-	}
+	public bool isActive;
 
 	private void Start()
 	{
