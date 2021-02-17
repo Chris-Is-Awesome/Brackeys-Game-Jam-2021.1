@@ -1,11 +1,6 @@
 /*
-* Author(s): Chris is Awesome
-*/
-
-/* Plans:
- * Basic stats for ent (hp, damage, etc.)
- * Reset to defaults function (resets Transform & stats)
- * Initiates AI state switch
+ * Author(s):
+	* Chris is Awesome
  */
 
 using System;

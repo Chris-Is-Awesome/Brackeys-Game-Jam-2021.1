@@ -1,9 +1,6 @@
 /*
- * Author(s): Chris is Awesome
- */
-
-/* Plans:
- * Similar to LevelEventTrigger in regards to state switching events?
+ * Author(s):
+	* Chris is Awesome
  */
 
 using UnityEngine;

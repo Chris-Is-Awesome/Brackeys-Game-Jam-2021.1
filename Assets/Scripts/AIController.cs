@@ -1,9 +1,6 @@
 /*
- * Author(s): Chris is Awesome
- */
-
-/* Plans:
- * Allow switching states (takes args: Entity entity, AIState fromState, AIState toState)
+ * Author(s):
+	* Chris is Awesome
  */
 
 using System.Collections.Generic;
