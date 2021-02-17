@@ -14,6 +14,20 @@ public class AIController : MonoBehaviour
 	[SerializeField] Transform stateHolder;
 	private List<AIState> aiStates;
 
+	private void Start()
+	{
+		if (aiStates == null || aiStates.Count < 1) aiStates = GetAllStates();
+
+		for (int i = 0; i < aiStates.Count; i++)
+		{
+			if (aiStates[i].isDefault)
+			{
+				aiStates[i].DoActivateState();
+				break;
+			}
+		}
+	}
+
 	public AIState ChangeState(string toState)
 	{
 		if (aiStates == null || aiStates.Count < 1) aiStates = GetAllStates();
@@ -28,16 +42,17 @@ public class AIController : MonoBehaviour
 			}
 		}
 
-		Debug.LogWarning("No AIState found for state '" + toState.ToString() + "' out of " + aiStates.Count + " AIState(s).");
+		Debug.LogWarning("No AIState found for state " + toState.ToString() + " out of " + aiStates.Count + " AIState(s).");
 		return null;
 	}
 
 	private void DoChangeState(AIState fromState, AIState toState)
 	{
-		fromState.DoDeactivateState();
-		toState.DoActivateState();
+		if (fromState != null) fromState.DoDeactivateState();
+		if (toState != null) toState.DoActivateState();
 
-		Debug.Log("Changed state from '" + fromState.GetType() + "' to '" + toState.GetType() + "'!");
+		if (fromState != null) Debug.Log("[" + gameObject.name + "] Changed state from " + fromState.GetType() + " to " + toState.GetType() + "!");
+		else Debug.Log("[" + gameObject.name + "] Changed state to " + toState.GetType() + "!");
 	}
 
 	public AIState GetActiveState()

@@ -10,9 +10,7 @@ using UnityEngine;
 
 public class AIState : MonoBehaviour
 {
-	[TextArea] [SerializeField] string description;
-	public string animName;
-	[SerializeField] bool isDefault;
+	public bool isDefault;
 	public bool isActive;
 
 	private void Start()
@@ -23,10 +21,17 @@ public class AIState : MonoBehaviour
 	public void DoActivateState()
 	{
 		isActive = true;
+		enabled = true;
 	}
 
 	public void DoDeactivateState()
 	{
 		isActive = false;
+		enabled = false;
+	}
+
+	public Entity GetEntity()
+	{
+		return GetComponentInParent<Entity>();
 	}
 }
