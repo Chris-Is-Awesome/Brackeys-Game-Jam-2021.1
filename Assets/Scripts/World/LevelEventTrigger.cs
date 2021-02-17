@@ -70,9 +70,6 @@ public class LevelEventTrigger : MonoBehaviour
 
 	[Header("What should the event do after being triggered?")]
 	[SerializeField]
-	[Tooltip("How should the effect be triggered?")]
-	Effects postTriggerEffect = Effects.NoEffect;
-	[SerializeField]
 	[ConditionalField("postTriggerEffect", false, Effects.OnTimer)]
 	[Tooltip("How long should it wait aftet triggering event before this effect happens?")]
 	float effectDelay;
