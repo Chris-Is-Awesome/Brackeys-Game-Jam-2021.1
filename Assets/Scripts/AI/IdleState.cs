@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class IdleState : AIState
 {
-	void Start()
+	private void OnEnable()
 	{
 		Entity ent = GetEntity();
 		Rigidbody2D rb = ent.GetComponent<Rigidbody2D>();
@@ -17,7 +17,7 @@ public class IdleState : AIState
 		if (animator != null)
 		{
 			animator.SetBool("IsGrounded", true);
-			animator.SetInteger("MoveSpeed", 0);
+			animator.SetFloat("MoveSpeed", 0);
 		}
 	}
 }

@@ -57,6 +57,22 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Split"",
+                    ""type"": ""Button"",
+                    ""id"": ""301b825f-080f-491e-aa80-655e8a6ab8f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecbb3699-8713-49e2-b6a4-75ae722b8592"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -246,6 +262,28 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ceded670-e5e7-4bcb-a21b-3ce2de1239b0"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""Split"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec0824ac-01a8-4a9d-9daf-e5d2e62c75b7"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -314,6 +352,8 @@ public class @InputController : IInputActionCollection, IDisposable
         m_Player_FastFall = m_Player.FindAction("Fast Fall", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_Split = m_Player.FindAction("Split", throwIfNotFound: true);
+        m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         // Testing
         m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
         m_Testing_Reset = m_Testing.FindAction("Reset", throwIfNotFound: true);
@@ -371,6 +411,8 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_FastFall;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_Split;
+    private readonly InputAction m_Player_Ability;
     public struct PlayerActions
     {
         private @InputController m_Wrapper;
@@ -380,6 +422,8 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @FastFall => m_Wrapper.m_Player_FastFall;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @Split => m_Wrapper.m_Player_Split;
+        public InputAction @Ability => m_Wrapper.m_Player_Ability;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -404,6 +448,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @Split.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
+                @Split.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
+                @Split.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
+                @Ability.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @Ability.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @Ability.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -423,6 +473,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
+                @Split.started += instance.OnSplit;
+                @Split.performed += instance.OnSplit;
+                @Split.canceled += instance.OnSplit;
+                @Ability.started += instance.OnAbility;
+                @Ability.performed += instance.OnAbility;
+                @Ability.canceled += instance.OnAbility;
             }
         }
     }
@@ -485,6 +541,8 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnFastFall(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnSplit(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
     public interface ITestingActions
     {

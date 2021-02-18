@@ -61,7 +61,13 @@ public class Entity : MonoBehaviour
 	public StatData stats;
 
 	[Header("Debug")]
-	[SerializeField] [ReadOnly] AIState currentAIState;
+	[ReadOnly] public AIState currentAIState;
+	[ReadOnly] public bool isGrounded = true;
+
+	private void Start()
+	{
+		isGrounded = true;
+	}
 
 	// Resets an Entity to its default parameters
 	public void ResetEntity()
@@ -74,11 +80,18 @@ public class Entity : MonoBehaviour
 	// Sets Entity AI State
 	public void SetState(string toState)
 	{
-		if (aiController != null)
-		{
-			AIState newState = aiController.ChangeState(toState);
-			if (newState != null) currentAIState = newState;
-		}
+		if (aiController != null) aiController.ChangeState(toState);
 		else Debug.LogError("AIController is not assigned.");
+	}
+
+	public bool IsStateActive(string state)
+	{
+		if (aiController != null && aiController.IsStateActive(state)) return true;
+		return false;
+	}
+
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag("Platform") && !isGrounded) SetState("idle");
 	}
 }
