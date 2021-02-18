@@ -30,6 +30,7 @@ public class JumpState : AIState
 	private void OnDisable()
 	{
 		if (ent != null) ent.isGrounded = true;
+		if (animator != null) animator.SetBool("IsFalling", false);
 	}
 
 	private void FixedUpdate()
