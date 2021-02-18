@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class AIState : MonoBehaviour
 {
+	[Header("AI")]
 	public bool isDefault;
 	public bool isActive;
 
@@ -19,6 +20,7 @@ public class AIState : MonoBehaviour
 	{
 		isActive = true;
 		enabled = true;
+		GetEntity().currentAIState = this;
 	}
 
 	public void DoDeactivateState()

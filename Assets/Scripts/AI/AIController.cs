@@ -11,32 +11,25 @@ public class AIController : MonoBehaviour
 	[SerializeField] Transform stateHolder;
 	private List<AIState> aiStates;
 
-	private void Start()
+	private void Awake()
 	{
 		if (aiStates == null || aiStates.Count < 1) aiStates = GetAllStates();
 
 		for (int i = 0; i < aiStates.Count; i++)
 		{
-			if (aiStates[i].isDefault)
-			{
-				aiStates[i].DoActivateState();
-				break;
-			}
+			if (aiStates[i].enabled) aiStates[i].enabled = false;
+			if (aiStates[i].isDefault) aiStates[i].DoActivateState();
 		}
 	}
 
 	public AIState ChangeState(string toState)
 	{
-		if (aiStates == null || aiStates.Count < 1) aiStates = GetAllStates();
+		AIState newState = GetStateByName(toState);
 
-		// Check if state exists
-		for (int i = 0; i < aiStates.Count; i++)
+		if (newState != null)
 		{
-			if (aiStates[i].GetType().ToString().StartsWith(toState.ToString()))
-			{
-				DoChangeState(GetActiveState(), aiStates[i]);
-				return aiStates[i];
-			}
+			DoChangeState(GetActiveState(), newState);
+			return newState;
 		}
 
 		Debug.LogWarning("No AIState found for state " + toState.ToString() + " out of " + aiStates.Count + " AIState(s).");
@@ -50,6 +43,22 @@ public class AIController : MonoBehaviour
 
 		if (fromState != null) Debug.Log("[" + gameObject.name + "] Changed state from " + fromState.GetType() + " to " + toState.GetType() + "!");
 		else Debug.Log("[" + gameObject.name + "] Changed state to " + toState.GetType() + "!");
+	}
+
+	public AIState GetStateByName(string state)
+	{
+		string stateName = state.ToLower();
+
+		if (IsStateValid(state))
+		{
+			for (int i = 0; i < aiStates.Count; i++)
+			{
+				string currState = aiStates[i].GetType().ToString().ToLower();
+				if (currState.StartsWith(stateName)) return aiStates[i];
+			}
+		}
+
+		return null;
 	}
 
 	public AIState GetActiveState()
@@ -76,5 +85,23 @@ public class AIController : MonoBehaviour
 		}
 
 		return allAIStates;
+	}
+
+	public bool IsStateValid(string state)
+	{
+		string stateName = state.ToLower();
+
+		for (int i = 0; i < aiStates.Count; i++)
+		{
+			if (aiStates[i].GetType().ToString().ToLower().StartsWith(stateName)) return true;
+		}
+
+		return false;
+	}
+
+	public bool IsStateActive(string state)
+	{
+		if (GetStateByName(state).isActive) return true;
+		return false;
 	}
 }
