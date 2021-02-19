@@ -10,6 +10,7 @@ public class AIState : MonoBehaviour
 	[Header("AI")]
 	public bool isDefault;
 	public bool isActive;
+	public bool isSolo;
 
 	private void Start()
 	{

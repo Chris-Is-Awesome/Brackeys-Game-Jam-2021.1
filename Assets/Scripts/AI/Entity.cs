@@ -57,16 +57,68 @@ public class Entity : MonoBehaviour
 	}
 
 	[SerializeField] AIController aiController;
+	private InputController inputs;
+	private bool isPlayer;
 	[Space]
 	public StatData stats;
 
 	[Header("Debug")]
 	[ReadOnly] public AIState currentAIState;
 	[ReadOnly] public bool isGrounded = true;
+	[ReadOnly] public float movingDirection;
+
+	public InputController GetInputData()
+	{
+		return inputs;
+	}
+
+	private void Awake()
+	{
+		inputs = new InputController();
+		isPlayer = gameObject.CompareTag("Player");
+		if (isPlayer)
+		{
+			SlimeController slimeController = GetComponentInChildren<SlimeController>();
+			if (slimeController != null)
+			{
+				inputs.Player.Split.started += ctx => slimeController.Split();
+				inputs.Player.Ability.started += ctx => slimeController.UseAbility();
+			}
+		}
+	}
 
 	private void Start()
 	{
 		isGrounded = true;
+	}
+
+	private void OnEnable()
+	{
+		if (isPlayer) inputs.Enable();
+	}
+
+	private void OnDisable()
+	{
+		if (isPlayer) inputs.Disable();
+	}
+
+	private void Update()
+	{
+		// Idle state
+		if (isGrounded && movingDirection == 0 && !IsStateActive("idle")) SetState("idle");
+
+		// Walk state
+		if (isPlayer) movingDirection = inputs.Player.Movement.ReadValue<float>();
+		// TODO: For enemies, base movement on RNG rather than input
+		if (movingDirection != 0 && !IsStateActive("walk")) SetState("walk");
+		if (!isGrounded && movingDirection == 0)
+		{
+			Rigidbody2D selfRb = GetComponent<Rigidbody2D>();
+			if (selfRb != null) selfRb.velocity = new Vector2(0, selfRb.velocity.y);
+		}
+
+		// Jump state
+		if (!IsStateActive("jump") && Convert.ToBoolean(inputs.Player.Jump.ReadValue<float>())) SetState("jump");
 	}
 
 	// Resets an Entity to its default parameters
@@ -90,7 +142,7 @@ public class Entity : MonoBehaviour
 		return false;
 	}
 
-	private void OnCollisionEnter2D(Collision2D other)
+	private void OnCollisionStay2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Platform") && !isGrounded) SetState("idle");
 	}

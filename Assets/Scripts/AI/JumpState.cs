@@ -23,26 +23,32 @@ public class JumpState : AIState
 		rb = GetComponentInParent<Rigidbody2D>();
 		animator = GetComponentInParent<Animator>();
 		jumpTime = jumpTimeMax;
-		animator.SetBool("IsGrounded", false);
-		ent.isGrounded = false;
 	}
 
 	private void OnDisable()
 	{
 		if (ent != null) ent.isGrounded = true;
+		if (animator != null) animator.SetBool("IsFalling", false);
 	}
 
 	private void FixedUpdate()
 	{
+		// Handle jump
 		if (jumpTime > 0)
 		{
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce / 2.25f);
 			jumpTime -= Time.fixedDeltaTime;
+
+			if (ent.GetInputData().Player.Jump.ReadValue<float>() == 0) jumpTime = 0;
 		}
-		else if (!animator.GetBool("IsFalling"))
+		else jumpTime = 0;
+
+		// Handle animations
+		if (rb.velocity.y > 0)
 		{
-			jumpTime = 0;
-			animator.SetBool("IsFalling", true);
+			animator.SetBool("IsGrounded", false);
+			ent.isGrounded = false;
 		}
+		else if (rb.velocity.y < 0) animator.SetBool("IsFalling", true);
 	}
 }
