@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 251436939}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,6 +259,7 @@ MonoBehaviour:
     damageData: {fileID: 0}
   currentAIState: {fileID: 0}
   isGrounded: 1
+  movingDirection: 0
 --- !u!61 &251436941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -403,6 +404,7 @@ GameObject:
   - component: {fileID: 892515552}
   - component: {fileID: 892515553}
   - component: {fileID: 892515554}
+  - component: {fileID: 892515555}
   m_Layer: 0
   m_Name: AIStates
   m_TagString: Untagged
@@ -438,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDefault: 1
   isActive: 0
+  isSolo: 1
 --- !u!114 &892515554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,9 +455,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDefault: 0
   isActive: 0
-  jumpForce: 10
+  isSolo: 0
+  jumpForce: 15
   jumpTimeMax: 0.5
   jumpTime: 0
+--- !u!114 &892515555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892515551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a785af945644b42a85017c9f1c9589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefault: 0
+  isActive: 0
+  isSolo: 0
+  speed: 35
 --- !u!1001 &978887859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -616,6 +636,7 @@ GameObject:
   - component: {fileID: 1498921982}
   - component: {fileID: 1498921981}
   - component: {fileID: 1498921979}
+  - component: {fileID: 1498921980}
   m_Layer: 0
   m_Name: Collision
   m_TagString: Platform
@@ -649,10 +670,46 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!66 &1498921980
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498921977}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1498921979}
+    m_ColliderPaths:
+    - - X: -240000000
+        Y: -140000000
+      - X: -50000000
+        Y: -140000000
+      - X: -50000000
+        Y: -130000000
+      - X: -240000000
+        Y: -130000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: -5.000029, y: -14}
+      - {x: -5.000029, y: -13}
+      - {x: -24, y: -13.00003}
+      - {x: -23.999971, y: -14}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!50 &1498921981
 Rigidbody2D:
   serializedVersion: 4
