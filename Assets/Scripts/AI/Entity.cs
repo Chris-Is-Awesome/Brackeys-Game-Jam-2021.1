@@ -142,7 +142,7 @@ public class Entity : MonoBehaviour
 		return false;
 	}
 
-	private void OnCollisionEnter2D(Collision2D other)
+	private void OnCollisionStay2D(Collision2D other)
 	{
 		if (other.gameObject.CompareTag("Platform") && !isGrounded) SetState("idle");
 	}
