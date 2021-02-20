@@ -51,12 +51,18 @@ TagManager:
   - name: Background
     uniqueID: 2452636475
     locked: 0
-  - name: Foreground
-    uniqueID: 3912283535
+  - name: Mechanisms
+    uniqueID: 1041208423
     locked: 0
   - name: Player
     uniqueID: 265194655
     locked: 0
+  - name: Liquids
+    uniqueID: 978783331
+    locked: 0
   - name: Level
     uniqueID: 3782019207
+    locked: 0
+  - name: Foreground
+    uniqueID: 3912283535
     locked: 0

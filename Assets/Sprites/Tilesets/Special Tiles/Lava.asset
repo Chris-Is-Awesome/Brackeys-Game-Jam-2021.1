@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_AnimatedSprites:
+  - {fileID: -8890641348306671835, guid: c2cf419aab7d743408e4d31e19594dca, type: 3}
+  - {fileID: -5019001754007818968, guid: c2cf419aab7d743408e4d31e19594dca, type: 3}
+  m_MinSpeed: 0.5
+  m_MaxSpeed: 0.5
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0
