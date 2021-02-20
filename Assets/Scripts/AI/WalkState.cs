@@ -3,7 +3,6 @@
 	* Chris is Awesome
  */
 
-using System;
 using UnityEngine;
 
 public class WalkState : AIState
@@ -18,8 +17,8 @@ public class WalkState : AIState
 	private void OnEnable()
 	{
 		ent = GetEntity();
-		rb = GetComponentInParent<Rigidbody2D>();
-		animator = GetComponentInParent<Animator>();
+		rb = GetRigidbody();
+		animator = GetAnimator();
 	}
 
 	private void OnDisable()
@@ -35,8 +34,10 @@ public class WalkState : AIState
 		// Flip sprite
 		if (ent.movingDirection != 0)
 		{
-			int facingDirection = ent.movingDirection >= 0 ? -1 : 1;
-			ent.transform.localScale = new Vector2(facingDirection, 1);
+			//int facingDirection = ent.movingDirection >= 0 ? -1 : 1;
+			//animator.transform.localScale = new Vector2(facingDirection, 1);
+			bool faceRight = ent.movingDirection > 0;
+			GetRenderer().flipX = faceRight;
 		}
 
 		// Start animation

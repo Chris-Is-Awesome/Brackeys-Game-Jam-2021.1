@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-	[SerializeField] Transform stateHolder;
 	private List<AIState> aiStates;
 
 	private void Awake()
@@ -40,7 +39,7 @@ public class AIController : MonoBehaviour
 	{
 		for (int i = 0; i < fromStates.Count; i++)
 		{
-			if (toState.isSolo || fromStates[i].isSolo) fromStates[i].DoDeactivateState();
+			if (toState.isSolo) fromStates[i].DoDeactivateState();
 		}
 		toState.DoActivateState();
 
@@ -80,7 +79,7 @@ public class AIController : MonoBehaviour
 	public List<AIState> GetAllStates()
 	{
 		List<AIState> allAIStates = new List<AIState>();
-		Transform aiStatesHolder = stateHolder;
+		Transform aiStatesHolder = transform.Find("AIStates");
 
 		foreach (AIState aiState in aiStatesHolder.GetComponents<AIState>())
 		{
@@ -92,6 +91,7 @@ public class AIController : MonoBehaviour
 
 	public bool IsStateValid(string state)
 	{
+		if (aiStates == null || aiStates.Count < 1) aiStates = GetAllStates();
 		string stateName = state.ToLower();
 
 		for (int i = 0; i < aiStates.Count; i++)
@@ -104,7 +104,8 @@ public class AIController : MonoBehaviour
 
 	public bool IsStateActive(string state)
 	{
-		if (GetStateByName(state).isActive) return true;
+		AIState foundState = GetStateByName(state);
+		if (foundState != null && foundState.isActive) return true;
 		return false;
 	}
 }

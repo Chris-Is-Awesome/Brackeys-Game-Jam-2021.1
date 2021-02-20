@@ -20,8 +20,8 @@ public class JumpState : AIState
 	private void OnEnable()
 	{
 		ent = GetEntity();
-		rb = GetComponentInParent<Rigidbody2D>();
-		animator = GetComponentInParent<Animator>();
+		rb = GetRigidbody();
+		animator = GetAnimator();
 		jumpTime = jumpTimeMax;
 	}
 
@@ -39,7 +39,7 @@ public class JumpState : AIState
 			rb.velocity = new Vector2(rb.velocity.x, jumpForce / 2.25f);
 			jumpTime -= Time.fixedDeltaTime;
 
-			if (ent.GetInputData().Player.Jump.ReadValue<float>() == 0) jumpTime = 0;
+			if (GetSlimeController().GetInputData().Player.Jump.ReadValue<float>() == 0) jumpTime = 0;
 		}
 		else jumpTime = 0;
 

@@ -9,9 +9,8 @@ public class IdleState : AIState
 {
 	private void OnEnable()
 	{
-		Entity ent = GetEntity();
-		Rigidbody2D rb = ent.GetComponent<Rigidbody2D>();
-		Animator animator = ent.GetComponent<Animator>();
+		Rigidbody2D rb = GetRigidbody();
+		Animator animator = GetAnimator();
 
 		if (rb != null) rb.velocity = Vector3.zero;
 		if (animator != null)

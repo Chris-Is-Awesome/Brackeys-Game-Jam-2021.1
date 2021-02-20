@@ -35,14 +35,6 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fast Fall"",
-                    ""type"": ""Button"",
-                    ""id"": ""f17b7b2a-745e-486c-adbe-b4b99f62007c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""8dbc07f9-243c-48eb-abda-f37c95e51522"",
@@ -51,28 +43,52 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Run"",
+                    ""name"": ""PreviousSlime"",
                     ""type"": ""Button"",
-                    ""id"": ""f5d4ecae-b098-47c3-8acb-8f0ad253f08b"",
+                    ""id"": ""cf7dbe6a-a5b8-41be-9d70-674356850064"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Split"",
+                    ""name"": ""NextSlime"",
                     ""type"": ""Button"",
-                    ""id"": ""301b825f-080f-491e-aa80-655e8a6ab8f2"",
+                    ""id"": ""e258148b-3cb0-4d77-babe-db3399904d04"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Ability"",
+                    ""name"": ""Detonate"",
                     ""type"": ""Button"",
-                    ""id"": ""ecbb3699-8713-49e2-b6a4-75ae722b8592"",
+                    ""id"": ""e21efd2a-55cc-4568-902e-4be003d34920"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Hold(duration=1.5)""
+                },
+                {
+                    ""name"": ""Sticky"",
+                    ""type"": ""Button"",
+                    ""id"": ""371dea35-148e-4d4c-9cd0-6f7b2e14f2c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1.5)""
+                },
+                {
+                    ""name"": ""IceBeam"",
+                    ""type"": ""Button"",
+                    ""id"": ""f441ac96-17c8-4327-b776-5986398e0880"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1.5)""
+                },
+                {
+                    ""name"": ""ReturnToCore"",
+                    ""type"": ""Button"",
+                    ""id"": ""0fec4295-faf4-4eaf-9965-4cee9d7a70de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1.5)""
                 }
             ],
             ""bindings"": [
@@ -102,17 +118,6 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""6cdbb591-71c3-4e10-82c0-747bdd40a497"",
                     ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6fc342ac-2ce7-4bdf-8b51-6477202625f5"",
-                    ""path"": ""<Keyboard>/numpad8"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard/Mouse"",
@@ -221,67 +226,67 @@ public class @InputController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""db5de039-8a4e-4f14-b28b-e4396297431d"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""50caa068-64d8-4841-b669-e1aea9995894"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Fast Fall"",
+                    ""action"": ""PreviousSlime"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""27377a98-dc69-4c21-b72b-f3d7862dd2be"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""id"": ""ed8e2f65-0136-4cf8-b743-0137289e0481"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Fast Fall"",
+                    ""action"": ""NextSlime"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0568450c-3f25-4c0a-a79c-4ce223d0389f"",
-                    ""path"": ""<Keyboard>/numpad2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Fast Fall"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c2488ab0-8dee-431e-9e2c-a594d5ceb1f5"",
+                    ""id"": ""3cabfe59-721a-4b80-ac7f-72bff6b32d45"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Run"",
+                    ""action"": ""Detonate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ceded670-e5e7-4bcb-a21b-3ce2de1239b0"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""id"": ""bc45f086-8037-4ef6-a643-1b5704a10fb5"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Split"",
+                    ""action"": ""Sticky"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ec0824ac-01a8-4a9d-9daf-e5d2e62c75b7"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""3a463acc-69a1-41b4-9d75-0da2dfc24940"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Ability"",
+                    ""action"": ""IceBeam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a207a70-7828-4c8e-9657-a17d5db3ba68"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""ReturnToCore"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -349,11 +354,13 @@ public class @InputController : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_FastFall = m_Player.FindAction("Fast Fall", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
-        m_Player_Split = m_Player.FindAction("Split", throwIfNotFound: true);
-        m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
+        m_Player_PreviousSlime = m_Player.FindAction("PreviousSlime", throwIfNotFound: true);
+        m_Player_NextSlime = m_Player.FindAction("NextSlime", throwIfNotFound: true);
+        m_Player_Detonate = m_Player.FindAction("Detonate", throwIfNotFound: true);
+        m_Player_Sticky = m_Player.FindAction("Sticky", throwIfNotFound: true);
+        m_Player_IceBeam = m_Player.FindAction("IceBeam", throwIfNotFound: true);
+        m_Player_ReturnToCore = m_Player.FindAction("ReturnToCore", throwIfNotFound: true);
         // Testing
         m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
         m_Testing_Reset = m_Testing.FindAction("Reset", throwIfNotFound: true);
@@ -408,22 +415,26 @@ public class @InputController : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_FastFall;
     private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_Run;
-    private readonly InputAction m_Player_Split;
-    private readonly InputAction m_Player_Ability;
+    private readonly InputAction m_Player_PreviousSlime;
+    private readonly InputAction m_Player_NextSlime;
+    private readonly InputAction m_Player_Detonate;
+    private readonly InputAction m_Player_Sticky;
+    private readonly InputAction m_Player_IceBeam;
+    private readonly InputAction m_Player_ReturnToCore;
     public struct PlayerActions
     {
         private @InputController m_Wrapper;
         public PlayerActions(@InputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @FastFall => m_Wrapper.m_Player_FastFall;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @Run => m_Wrapper.m_Player_Run;
-        public InputAction @Split => m_Wrapper.m_Player_Split;
-        public InputAction @Ability => m_Wrapper.m_Player_Ability;
+        public InputAction @PreviousSlime => m_Wrapper.m_Player_PreviousSlime;
+        public InputAction @NextSlime => m_Wrapper.m_Player_NextSlime;
+        public InputAction @Detonate => m_Wrapper.m_Player_Detonate;
+        public InputAction @Sticky => m_Wrapper.m_Player_Sticky;
+        public InputAction @IceBeam => m_Wrapper.m_Player_IceBeam;
+        public InputAction @ReturnToCore => m_Wrapper.m_Player_ReturnToCore;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -439,21 +450,27 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @FastFall.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFastFall;
-                @FastFall.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFastFall;
-                @FastFall.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFastFall;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
-                @Split.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
-                @Split.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
-                @Split.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSplit;
-                @Ability.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
-                @Ability.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
-                @Ability.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @PreviousSlime.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousSlime;
+                @PreviousSlime.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousSlime;
+                @PreviousSlime.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPreviousSlime;
+                @NextSlime.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextSlime;
+                @NextSlime.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextSlime;
+                @NextSlime.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextSlime;
+                @Detonate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDetonate;
+                @Detonate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDetonate;
+                @Detonate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDetonate;
+                @Sticky.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSticky;
+                @Sticky.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSticky;
+                @Sticky.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSticky;
+                @IceBeam.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIceBeam;
+                @IceBeam.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIceBeam;
+                @IceBeam.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIceBeam;
+                @ReturnToCore.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToCore;
+                @ReturnToCore.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToCore;
+                @ReturnToCore.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToCore;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -464,21 +481,27 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @FastFall.started += instance.OnFastFall;
-                @FastFall.performed += instance.OnFastFall;
-                @FastFall.canceled += instance.OnFastFall;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @Run.started += instance.OnRun;
-                @Run.performed += instance.OnRun;
-                @Run.canceled += instance.OnRun;
-                @Split.started += instance.OnSplit;
-                @Split.performed += instance.OnSplit;
-                @Split.canceled += instance.OnSplit;
-                @Ability.started += instance.OnAbility;
-                @Ability.performed += instance.OnAbility;
-                @Ability.canceled += instance.OnAbility;
+                @PreviousSlime.started += instance.OnPreviousSlime;
+                @PreviousSlime.performed += instance.OnPreviousSlime;
+                @PreviousSlime.canceled += instance.OnPreviousSlime;
+                @NextSlime.started += instance.OnNextSlime;
+                @NextSlime.performed += instance.OnNextSlime;
+                @NextSlime.canceled += instance.OnNextSlime;
+                @Detonate.started += instance.OnDetonate;
+                @Detonate.performed += instance.OnDetonate;
+                @Detonate.canceled += instance.OnDetonate;
+                @Sticky.started += instance.OnSticky;
+                @Sticky.performed += instance.OnSticky;
+                @Sticky.canceled += instance.OnSticky;
+                @IceBeam.started += instance.OnIceBeam;
+                @IceBeam.performed += instance.OnIceBeam;
+                @IceBeam.canceled += instance.OnIceBeam;
+                @ReturnToCore.started += instance.OnReturnToCore;
+                @ReturnToCore.performed += instance.OnReturnToCore;
+                @ReturnToCore.canceled += instance.OnReturnToCore;
             }
         }
     }
@@ -538,11 +561,13 @@ public class @InputController : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnFastFall(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnRun(InputAction.CallbackContext context);
-        void OnSplit(InputAction.CallbackContext context);
-        void OnAbility(InputAction.CallbackContext context);
+        void OnPreviousSlime(InputAction.CallbackContext context);
+        void OnNextSlime(InputAction.CallbackContext context);
+        void OnDetonate(InputAction.CallbackContext context);
+        void OnSticky(InputAction.CallbackContext context);
+        void OnIceBeam(InputAction.CallbackContext context);
+        void OnReturnToCore(InputAction.CallbackContext context);
     }
     public interface ITestingActions
     {

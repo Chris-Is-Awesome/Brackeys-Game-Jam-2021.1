@@ -22,14 +22,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fast Fall",
-                    "type": "Button",
-                    "id": "f17b7b2a-745e-486c-adbe-b4b99f62007c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "8dbc07f9-243c-48eb-abda-f37c95e51522",
@@ -38,28 +30,52 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Run",
+                    "name": "PreviousSlime",
                     "type": "Button",
-                    "id": "f5d4ecae-b098-47c3-8acb-8f0ad253f08b",
+                    "id": "cf7dbe6a-a5b8-41be-9d70-674356850064",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Split",
+                    "name": "NextSlime",
                     "type": "Button",
-                    "id": "301b825f-080f-491e-aa80-655e8a6ab8f2",
+                    "id": "e258148b-3cb0-4d77-babe-db3399904d04",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "Ability",
+                    "name": "Detonate",
                     "type": "Button",
-                    "id": "ecbb3699-8713-49e2-b6a4-75ae722b8592",
+                    "id": "e21efd2a-55cc-4568-902e-4be003d34920",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold(duration=1.5)"
+                },
+                {
+                    "name": "Sticky",
+                    "type": "Button",
+                    "id": "371dea35-148e-4d4c-9cd0-6f7b2e14f2c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1.5)"
+                },
+                {
+                    "name": "IceBeam",
+                    "type": "Button",
+                    "id": "f441ac96-17c8-4327-b776-5986398e0880",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1.5)"
+                },
+                {
+                    "name": "ReturnToCore",
+                    "type": "Button",
+                    "id": "0fec4295-faf4-4eaf-9965-4cee9d7a70de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1.5)"
                 }
             ],
             "bindings": [
@@ -89,17 +105,6 @@
                     "name": "",
                     "id": "6cdbb591-71c3-4e10-82c0-747bdd40a497",
                     "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6fc342ac-2ce7-4bdf-8b51-6477202625f5",
-                    "path": "<Keyboard>/numpad8",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
@@ -208,67 +213,67 @@
                 },
                 {
                     "name": "",
-                    "id": "db5de039-8a4e-4f14-b28b-e4396297431d",
-                    "path": "<Keyboard>/s",
+                    "id": "50caa068-64d8-4841-b669-e1aea9995894",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
-                    "action": "Fast Fall",
+                    "action": "PreviousSlime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "27377a98-dc69-4c21-b72b-f3d7862dd2be",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "ed8e2f65-0136-4cf8-b743-0137289e0481",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
-                    "action": "Fast Fall",
+                    "action": "NextSlime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "0568450c-3f25-4c0a-a79c-4ce223d0389f",
-                    "path": "<Keyboard>/numpad2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Fast Fall",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c2488ab0-8dee-431e-9e2c-a594d5ceb1f5",
+                    "id": "3cabfe59-721a-4b80-ac7f-72bff6b32d45",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
-                    "action": "Run",
+                    "action": "Detonate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ceded670-e5e7-4bcb-a21b-3ce2de1239b0",
-                    "path": "<Keyboard>/leftCtrl",
+                    "id": "bc45f086-8037-4ef6-a643-1b5704a10fb5",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
-                    "action": "Split",
+                    "action": "Sticky",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ec0824ac-01a8-4a9d-9daf-e5d2e62c75b7",
-                    "path": "<Keyboard>/enter",
+                    "id": "3a463acc-69a1-41b4-9d75-0da2dfc24940",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
-                    "action": "Ability",
+                    "action": "IceBeam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a207a70-7828-4c8e-9657-a17d5db3ba68",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "ReturnToCore",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

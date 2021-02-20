@@ -47,10 +47,6 @@ public class PlayerController : MonoBehaviour
 		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
 		inputController = new InputController();
-		inputController.Player.FastFall.started += ctx => DoFastFall(true);
-		inputController.Player.FastFall.canceled += ctx => DoFastFall(false);
-		inputController.Player.Run.started += ctx => DoRun(true);
-		inputController.Player.Run.canceled += ctx => DoRun(false);
 		inputController.Player.Pause.started += ctx => Pause();
 		inputController.Testing.Reset.started += ctx => Reset();
 		selfRigidbody.gravityScale = gravity;
