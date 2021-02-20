@@ -47,10 +47,6 @@ public class PlayerController : MonoBehaviour
 		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
 		inputController = new InputController();
-		inputController.Player.FastFall.started += ctx => DoFastFall(true);
-		inputController.Player.FastFall.canceled += ctx => DoFastFall(false);
-		inputController.Player.Run.started += ctx => DoRun(true);
-		inputController.Player.Run.canceled += ctx => DoRun(false);
 		inputController.Player.Pause.started += ctx => Pause();
 		inputController.Testing.Reset.started += ctx => Reset();
 		selfRigidbody.gravityScale = gravity;
@@ -86,8 +82,8 @@ public class PlayerController : MonoBehaviour
 		// Handle jumping
 		if (isJumping) HandleJump();
 
-        //Check if ascending
-        selfAnimator.SetBool("isAscending", selfRigidbody.velocity.y>0);
+		//Check if ascending
+		selfAnimator.SetBool("isAscending", selfRigidbody.velocity.y > 0);
 	}
 
 	private void ChangeState(PlayerStates toState)
@@ -107,7 +103,7 @@ public class PlayerController : MonoBehaviour
 			case PlayerStates.Jump:
 				isGrounded = false;
 				selfAnimator.SetBool("isGrounded", false);
-                // selfAnimator.SetTrigger("Jump"); //Might need this later if a jump animation is made, but for now this is handled with isAscending
+				// selfAnimator.SetTrigger("Jump"); //Might need this later if a jump animation is made, but for now this is handled with isAscending
 				break;
 			case PlayerStates.Fall:
 				isGrounded = false;

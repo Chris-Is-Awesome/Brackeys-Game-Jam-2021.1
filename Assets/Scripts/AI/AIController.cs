@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-	[SerializeField] Transform stateHolder;
 	private List<AIState> aiStates;
 
 	private void Awake()
@@ -28,7 +27,7 @@ public class AIController : MonoBehaviour
 
 		if (newState != null)
 		{
-			DoChangeState(GetActiveState(), newState);
+			DoChangeState(GetActiveStates(), newState);
 			return newState;
 		}
 
@@ -36,13 +35,15 @@ public class AIController : MonoBehaviour
 		return null;
 	}
 
-	private void DoChangeState(AIState fromState, AIState toState)
+	private void DoChangeState(List<AIState> fromStates, AIState toState)
 	{
-		if (fromState != null) fromState.DoDeactivateState();
-		if (toState != null) toState.DoActivateState();
+		for (int i = 0; i < fromStates.Count; i++)
+		{
+			if (toState.isSolo) fromStates[i].DoDeactivateState();
+		}
+		toState.DoActivateState();
 
-		if (fromState != null) Debug.Log("[" + gameObject.name + "] Changed state from " + fromState.GetType() + " to " + toState.GetType() + "!");
-		else Debug.Log("[" + gameObject.name + "] Changed state to " + toState.GetType() + "!");
+		//Debug.Log("[" + gameObject.name + "] Changed state to " + toState.GetType() + "!");
 	}
 
 	public AIState GetStateByName(string state)
@@ -61,23 +62,24 @@ public class AIController : MonoBehaviour
 		return null;
 	}
 
-	public AIState GetActiveState()
+	public List<AIState> GetActiveStates()
 	{
 		if (aiStates == null) aiStates = GetAllStates();
 
+		List<AIState> activeStates = new List<AIState>();
+
 		for (int i = 0; i < aiStates.Count; i++)
 		{
-			if (aiStates[i].isActive) return aiStates[i];
+			if (aiStates[i].isActive) activeStates.Add(aiStates[i]);
 		}
 
-		Debug.LogWarning("No AIState is active, returning null.");
-		return null;
+		return activeStates;
 	}
 
 	public List<AIState> GetAllStates()
 	{
 		List<AIState> allAIStates = new List<AIState>();
-		Transform aiStatesHolder = stateHolder;
+		Transform aiStatesHolder = transform.Find("AIStates");
 
 		foreach (AIState aiState in aiStatesHolder.GetComponents<AIState>())
 		{
@@ -89,6 +91,7 @@ public class AIController : MonoBehaviour
 
 	public bool IsStateValid(string state)
 	{
+		if (aiStates == null || aiStates.Count < 1) aiStates = GetAllStates();
 		string stateName = state.ToLower();
 
 		for (int i = 0; i < aiStates.Count; i++)
@@ -101,7 +104,8 @@ public class AIController : MonoBehaviour
 
 	public bool IsStateActive(string state)
 	{
-		if (GetStateByName(state).isActive) return true;
+		AIState foundState = GetStateByName(state);
+		if (foundState != null && foundState.isActive) return true;
 		return false;
 	}
 }
