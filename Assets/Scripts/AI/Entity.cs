@@ -1,6 +1,6 @@
 /*
- * Author(s):
-	* Chris is Awesome
+ *Author(s):
+	*Chris is Awesome
  */
 
 using System;

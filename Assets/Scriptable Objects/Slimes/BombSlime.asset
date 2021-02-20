@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98176c89759567941bde2dc0f36c3415, type: 3}
   m_Name: BombSlime
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier:
   _name: Bomb
   _description: Can destroy enemies and weak walls by exploding itself.
   _type: 1

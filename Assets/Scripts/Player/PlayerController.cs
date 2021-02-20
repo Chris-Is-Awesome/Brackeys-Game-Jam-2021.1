@@ -82,8 +82,8 @@ public class PlayerController : MonoBehaviour
 		// Handle jumping
 		if (isJumping) HandleJump();
 
-        //Check if ascending
-        selfAnimator.SetBool("isAscending", selfRigidbody.velocity.y>0);
+		//Check if ascending
+		selfAnimator.SetBool("isAscending", selfRigidbody.velocity.y > 0);
 	}
 
 	private void ChangeState(PlayerStates toState)
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 			case PlayerStates.Jump:
 				isGrounded = false;
 				selfAnimator.SetBool("isGrounded", false);
-                // selfAnimator.SetTrigger("Jump"); //Might need this later if a jump animation is made, but for now this is handled with isAscending
+				// selfAnimator.SetTrigger("Jump"); //Might need this later if a jump animation is made, but for now this is handled with isAscending
 				break;
 			case PlayerStates.Fall:
 				isGrounded = false;
