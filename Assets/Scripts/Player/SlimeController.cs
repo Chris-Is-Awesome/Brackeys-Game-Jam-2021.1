@@ -18,6 +18,13 @@ public class SlimeController : MonoBehaviour
 	private CinemachineVirtualCamera vCam;
 	private Entity ent;
 
+    [Header("Properties")]
+    [SerializeField] bool core;
+    [SerializeField] bool bomb;
+    [SerializeField] bool ice;
+    Animator myAnim;
+    int coreSize=1;
+
 	[Header("Debug")]
 	[ReadOnly] public bool isActive;
 	[ReadOnly] [SerializeField] bool hasControls;
@@ -42,6 +49,9 @@ public class SlimeController : MonoBehaviour
 
 		// Event subs
 		CollisionChecker.OnCollisionEnter += HandleCollisionEnter;
+
+        //GW stuff
+        myAnim = GetComponentInChildren<Animator>();
 	}
 
 	private void OnDisable()
@@ -59,18 +69,31 @@ public class SlimeController : MonoBehaviour
 
 			// Jump
 			if (!ent.IsStateActive("jump") && Convert.ToBoolean(inputs.Player.Jump.ReadValue<float>())) ent.SetState("jump");
+
+            // Detonate
+            if (bomb)
+            {
+
+            }
+
+            // Combine
+
+            // Split
 		}
 	}
 
 	private SlimeController GetOrderedSlime(bool next)
 	{
-		List<SlimeController> orderedSlimes = new List<SlimeController>
-		{
-			GameObject.Find("Core Slime").GetComponent<SlimeController>(),
-			GameObject.Find("Bomb Slime").GetComponent<SlimeController>()
-		};
+        List<SlimeController> orderedSlimes = new List<SlimeController>
+        {
+            GameObject.Find("Player").transform.Find("Core Slime").GetComponent<SlimeController>(),
+            GameObject.Find("Player").transform.Find("Bomb Slime").GetComponent<SlimeController>(),
+            GameObject.Find("Player").transform.Find("Ice Slime").GetComponent<SlimeController>(),
+            GameObject.Find("Player").transform.Find("Medium Slime").GetComponent<SlimeController>(),
+            GameObject.Find("Player").transform.Find("Big Slime").GetComponent<SlimeController>()
+        };
 
-		for (int i = 0; i < orderedSlimes.Count; i++)
+        for (int i = 0; i < orderedSlimes.Count; i++)
 		{
 			if (orderedSlimes[i].hasControls)
 			{
@@ -108,17 +131,111 @@ public class SlimeController : MonoBehaviour
 
 	private void CombineSlimes(SlimeController combineWith)
 	{
-		if (slimeSwitcher.GetSlimeCount() == 1)
-		{
-			GameObject mediumSlime = slimeSwitcher.transform.Find("Medium Slime").gameObject;
-			//
-		}
-		else if (slimeSwitcher.GetSlimeCount() == 2)
-		{
-			//
-		}
+            
 
-		transform.parent.GetComponent<SlimeSwitcher>().UpdateActiveSlimes();
+        GameObject mediumSlime = GameObject.Find("Player").transform.Find("Medium Slime").gameObject;
+        GameObject bigSlime = GameObject.Find("Player").transform.Find("Big Slime").gameObject;
+        //
+        int targetSize = 0;
+        if (core)
+        {
+            if (slimeSwitcher.foundBomb)
+            {
+                GameObject bombSlime = slimeSwitcher.transform.Find("Bomb Slime").gameObject;
+                targetSize++;
+                bombSlime.SetActive(false);
+                mediumSlime.GetComponent<SlimeController>().bomb = true;
+                bigSlime.GetComponent<SlimeController>().bomb = true;
+            }
+            if (slimeSwitcher.foundIce)
+            {
+                GameObject iceSlime = slimeSwitcher.transform.Find("Ice Slime").gameObject;
+                targetSize++;
+                iceSlime.SetActive(false);
+                mediumSlime.GetComponent<SlimeController>().ice = true;
+                bigSlime.GetComponent<SlimeController>().ice = true;
+            }
+            if (targetSize==1)
+            {
+                if (slimeSwitcher.coreSize == 1)
+                {
+                    mediumSlime.SetActive(true);
+                    mediumSlime.transform.position = transform.position;
+                    mediumSlime.GetComponent<SlimeController>().TakeControl();
+                    slimeSwitcher.coreSize = 2;
+                    slimeSwitcher.activeCore = mediumSlime;
+                }
+                else if (slimeSwitcher.coreSize ==2)
+                {
+                    bigSlime.SetActive(true);
+                    bigSlime.transform.position = transform.position;
+                    bigSlime.GetComponent<SlimeController>().TakeControl();
+                    slimeSwitcher.coreSize = 3;
+                    slimeSwitcher.activeCore = bigSlime;
+                }
+            }
+            if (targetSize==2)
+            {
+                bigSlime.SetActive(true);
+                bigSlime.transform.position = transform.position;
+                bigSlime.GetComponent<SlimeController>().TakeControl();
+                slimeSwitcher.coreSize = 3;
+                slimeSwitcher.activeCore = bigSlime;
+            }
+            slimeSwitcher.UpdateActiveSlimes();
+            gameObject.SetActive(false);
+        }
+        if (gameObject==slimeSwitcher.transform.Find("Bomb Slime").gameObject)
+        {
+            if (slimeSwitcher.coreSize == 1)
+            {
+                mediumSlime.SetActive(true);
+                mediumSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                mediumSlime.GetComponent<SlimeController>().TakeControl();
+                mediumSlime.GetComponent<SlimeController>().bomb = true;
+                slimeSwitcher.coreSize = 2;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = mediumSlime;
+            }
+            else if (slimeSwitcher.coreSize == 2)
+            {
+                bigSlime.SetActive(true);
+                bigSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                bigSlime.GetComponent<SlimeController>().TakeControl();
+                bigSlime.GetComponent<SlimeController>().bomb = true;
+                slimeSwitcher.coreSize = 3;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = bigSlime;
+            }
+            gameObject.SetActive(false);
+        }
+        if (gameObject == slimeSwitcher.transform.Find("Ice Slime").gameObject)
+        {
+            if (slimeSwitcher.coreSize == 1)
+            {
+                mediumSlime.SetActive(true);
+                mediumSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                mediumSlime.GetComponent<SlimeController>().TakeControl();
+                mediumSlime.GetComponent<SlimeController>().ice = true;
+                slimeSwitcher.coreSize = 2;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = mediumSlime;
+            }
+            else if (slimeSwitcher.coreSize == 2)
+            {
+                bigSlime.SetActive(true);
+                bigSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                bigSlime.GetComponent<SlimeController>().TakeControl();
+                bigSlime.GetComponent<SlimeController>().ice = true;
+                slimeSwitcher.coreSize = 3;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = bigSlime;
+            }
+            gameObject.SetActive(false);
+        }
+
+
+        transform.parent.GetComponent<SlimeSwitcher>().UpdateActiveSlimes();
 	}
 
 	private void SwitchSlime(SlimeController slime)

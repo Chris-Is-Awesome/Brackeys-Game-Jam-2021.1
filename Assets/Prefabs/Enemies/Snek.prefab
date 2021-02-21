@@ -286,7 +286,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   box: {fileID: 0}
   position: {x: 0, y: 0}
-  facing: 0
+  facing: 1
   speed: 0
 --- !u!1 &5628543201651489168
 GameObject:

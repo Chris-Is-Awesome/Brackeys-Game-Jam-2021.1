@@ -11,7 +11,12 @@ public class SlimeSwitcher : MonoBehaviour
 {
 	[ReadOnly] [SerializeField] List<SlimeController> activeSlimes = new List<SlimeController>();
 
-	void Start()
+    [SerializeField] public bool foundBomb = false;
+    [SerializeField] public bool foundIce = false;
+    public GameObject activeCore;
+    [ReadOnly] public int coreSize = 1;
+
+    void Start()
 	{
 		// Activate core slime by default
 		SlimeController[] slimeControllers = GetComponentsInChildren<SlimeController>();
@@ -19,7 +24,7 @@ public class SlimeSwitcher : MonoBehaviour
 		{
 			if (slimeControllers[i].gameObject.name == "Core Slime") slimeControllers[i].TakeControl();
 		}
-
+        activeCore = transform.Find("Core Slime").gameObject;
 		UpdateActiveSlimes();
 	}
 

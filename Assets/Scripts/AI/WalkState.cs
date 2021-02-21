@@ -38,6 +38,7 @@ public class WalkState : AIState
 			//animator.transform.localScale = new Vector2(facingDirection, 1);
 			bool faceRight = ent.movingDirection > 0;
 			GetRenderer().flipX = faceRight;
+            // animator.SetTrigger("Turn");
 		}
 
 		// Start animation

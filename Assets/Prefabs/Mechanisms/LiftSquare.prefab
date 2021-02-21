@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6198931612651053410}
   m_Layer: 0
   m_Name: LiftSquare
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,9 +155,10 @@ MonoBehaviour:
   origin: {fileID: 1657752601636654306}
   target: {fileID: 5684487146095292010}
   startActive: 1
-  speed: 2
+  speed: 0.08
   harmful: 0
   waitTime: 3
+  ascending: 1
 --- !u!1 &4693397608049504271
 GameObject:
   m_ObjectHideFlags: 0
