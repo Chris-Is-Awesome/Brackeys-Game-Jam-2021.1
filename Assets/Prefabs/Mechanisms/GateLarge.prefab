@@ -62,32 +62,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2961090633223887309, guid: 66e824948e5466d4facba85051b1dbbc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4453393426284170051, guid: 66e824948e5466d4facba85051b1dbbc,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 64e2b859c3363c64ca0c58523bf57822,
         type: 3}
-    - target: {fileID: 4453393426284170051, guid: 66e824948e5466d4facba85051b1dbbc,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4453393426284170051, guid: 66e824948e5466d4facba85051b1dbbc,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1041208423
-      objectReference: {fileID: 0}
-    - target: {fileID: 5912205254673331462, guid: 66e824948e5466d4facba85051b1dbbc,
-        type: 3}
-      propertyPath: m_Name
-      value: Gate
-      objectReference: {fileID: 0}
     - target: {fileID: 7831039780772096625, guid: 66e824948e5466d4facba85051b1dbbc,
         type: 3}
       propertyPath: m_Name
@@ -96,12 +76,7 @@ PrefabInstance:
     - target: {fileID: 8961908224614046492, guid: 66e824948e5466d4facba85051b1dbbc,
         type: 3}
       propertyPath: m_Size.y
-      value: 5.9845333
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961908224614046492, guid: 66e824948e5466d4facba85051b1dbbc,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.00000011920929
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8961908224614046492, guid: 66e824948e5466d4facba85051b1dbbc,
         type: 3}

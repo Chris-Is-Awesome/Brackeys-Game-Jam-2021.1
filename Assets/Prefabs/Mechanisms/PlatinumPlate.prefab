@@ -27,6 +27,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.22451866
       objectReference: {fileID: 0}
+    - target: {fileID: 1371112512539390248, guid: f8d5a561ace573b49a4d21d3fce3e47b,
+        type: 3}
+      propertyPath: reqWeight
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4989975760117585265, guid: f8d5a561ace573b49a4d21d3fce3e47b,
         type: 3}
       propertyPath: m_Sprite
@@ -134,6 +139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: 1041208423
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146851580955419922, guid: f8d5a561ace573b49a4d21d3fce3e47b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8d5a561ace573b49a4d21d3fce3e47b, type: 3}
