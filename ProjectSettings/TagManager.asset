@@ -8,6 +8,10 @@ TagManager:
   - CameraTrackStop
   - CheckPoint
   - GameManager
+  - Enemy Bound
+  - Enemy
+  - Core
+  - BreakRock
   layers:
   - Default
   - TransparentFX
@@ -62,7 +66,6 @@ TagManager:
     locked: 0
   - name: Level
     uniqueID: 3782019207
-    locked: 0
     locked: 0
   - name: Foreground
     uniqueID: 3912283535
