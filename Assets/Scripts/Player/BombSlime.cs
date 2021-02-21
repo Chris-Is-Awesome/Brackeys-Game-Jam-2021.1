@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-public class BombSlime : MonoBehaviour
+public class BombSlime : SlimeAbility
 {
 	private void Start()
 	{

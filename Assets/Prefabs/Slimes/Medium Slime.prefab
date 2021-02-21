@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3800544965321470370
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -6258417831459068125, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: slimeData
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574008653955343474, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6c53931b42f923141b0674b6c89b5a69, type: 2}
+    - target: {fileID: 5823752757051186485, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6527919639013154682, guid: 497eb6ac6d553e14284dffda2aea4270,
+        type: 3}
+    - target: {fileID: 8974487461533393072, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_Name
+      value: Medium Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487461533393079, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3282291870065318433, guid: 2344ad9dd306bfa41b948238cf35bdad, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 2344ad9dd306bfa41b948238cf35bdad, type: 3}

@@ -7,16 +7,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using Imports;
 
 public class SlimeController : MonoBehaviour
 {
 	[Header("Refs")]
 	[SerializeField] SlimeData slimeData;
 	private InputController inputs;
+	private SlimeSwitcher slimeSwitcher;
+	private CinemachineVirtualCamera vCam;
 	private Entity ent;
 
 	[Header("Debug")]
-	[SerializeField] bool hasControls;
+	[ReadOnly] public bool isActive;
+	[ReadOnly] [SerializeField] bool hasControls;
 
 	public InputController GetInputData()
 	{
@@ -29,8 +33,11 @@ public class SlimeController : MonoBehaviour
 		inputs = new InputController();
 		inputs.Player.PreviousSlime.performed += ctx => SwitchSlime(GetOrderedSlime(false));
 		inputs.Player.NextSlime.performed += ctx => SwitchSlime(GetOrderedSlime(true));
+		inputs.Player.Combine.performed += ctx => CombineSlimes(GetOrderedSlime(true));
 
 		// Vars
+		slimeSwitcher = transform.parent.GetComponent<SlimeSwitcher>();
+		vCam = GameObject.Find("Cinemachine").GetComponent<CinemachineVirtualCamera>();
 		ent = GetComponent<Entity>();
 
 		// Event subs
@@ -87,13 +94,31 @@ public class SlimeController : MonoBehaviour
 	{
 		inputs.Enable();
 		hasControls = true;
-		GameObject.Find("Cinemachine").GetComponent<CinemachineVirtualCamera>().Follow = transform.Find("Sprite & Physics");
+		isActive = true;
+		vCam.Follow = transform.Find("Sprite & Physics");
+
 	}
 
-	public void ReleaseControl()
+	private void ReleaseControl()
 	{
 		inputs.Disable();
 		hasControls = false;
+		isActive = false;
+	}
+
+	private void CombineSlimes(SlimeController combineWith)
+	{
+		if (slimeSwitcher.GetSlimeCount() == 1)
+		{
+			GameObject mediumSlime = slimeSwitcher.transform.Find("Medium Slime").gameObject;
+			//
+		}
+		else if (slimeSwitcher.GetSlimeCount() == 2)
+		{
+			//
+		}
+
+		transform.parent.GetComponent<SlimeSwitcher>().UpdateActiveSlimes();
 	}
 
 	private void SwitchSlime(SlimeController slime)
@@ -101,6 +126,8 @@ public class SlimeController : MonoBehaviour
 		Debug.Log("Switching to " + slime.gameObject.name);
 		slime.TakeControl();
 		ReleaseControl();
+
+		transform.parent.GetComponent<SlimeSwitcher>().UpdateActiveSlimes();
 	}
 
 	private void ReturnToCore()
