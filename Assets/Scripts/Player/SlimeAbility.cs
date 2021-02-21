@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-public class CoreSlime : SlimeAbility
+public class SlimeAbility : MonoBehaviour
 {
 	//
 }

@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold(duration=1.5)"
+                },
+                {
+                    "name": "Combine",
+                    "type": "Button",
+                    "id": "696eb2fd-fb3f-4dfb-9efd-0e142a1b1d8b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1.5)"
                 }
             ],
             "bindings": [
@@ -274,6 +282,17 @@
                     "processors": "",
                     "groups": "Keyboard/Mouse",
                     "action": "ReturnToCore",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33f39078-50d1-43cc-b275-fe508edf58dd",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Combine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

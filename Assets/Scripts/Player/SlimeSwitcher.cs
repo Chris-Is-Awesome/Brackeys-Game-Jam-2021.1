@@ -3,15 +3,14 @@
 	* Chris is Awesome
  */
 
-/*
- * Plans:
-	* Change which slime the camera tracks
- */
-
+using System.Collections.Generic;
 using UnityEngine;
+using Imports;
 
 public class SlimeSwitcher : MonoBehaviour
 {
+	[ReadOnly] [SerializeField] List<SlimeController> activeSlimes = new List<SlimeController>();
+
 	void Start()
 	{
 		// Activate core slime by default
@@ -20,5 +19,22 @@ public class SlimeSwitcher : MonoBehaviour
 		{
 			if (slimeControllers[i].gameObject.name == "Core Slime") slimeControllers[i].TakeControl();
 		}
+
+		UpdateActiveSlimes();
+	}
+
+	public void UpdateActiveSlimes()
+	{
+		activeSlimes.Clear();
+
+		foreach (SlimeController slime in GetComponentsInChildren<SlimeController>())
+		{
+			if (slime.isActive) activeSlimes.Add(slime);
+		}
+	}
+
+	public int GetSlimeCount()
+	{
+		return activeSlimes.Count;
 	}
 }

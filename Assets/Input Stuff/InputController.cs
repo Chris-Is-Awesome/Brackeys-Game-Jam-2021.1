@@ -89,6 +89,14 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1.5)""
+                },
+                {
+                    ""name"": ""Combine"",
+                    ""type"": ""Button"",
+                    ""id"": ""696eb2fd-fb3f-4dfb-9efd-0e142a1b1d8b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1.5)""
                 }
             ],
             ""bindings"": [
@@ -289,6 +297,17 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""ReturnToCore"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33f39078-50d1-43cc-b275-fe508edf58dd"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard/Mouse"",
+                    ""action"": ""Combine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -361,6 +380,7 @@ public class @InputController : IInputActionCollection, IDisposable
         m_Player_Sticky = m_Player.FindAction("Sticky", throwIfNotFound: true);
         m_Player_IceBeam = m_Player.FindAction("IceBeam", throwIfNotFound: true);
         m_Player_ReturnToCore = m_Player.FindAction("ReturnToCore", throwIfNotFound: true);
+        m_Player_Combine = m_Player.FindAction("Combine", throwIfNotFound: true);
         // Testing
         m_Testing = asset.FindActionMap("Testing", throwIfNotFound: true);
         m_Testing_Reset = m_Testing.FindAction("Reset", throwIfNotFound: true);
@@ -422,6 +442,7 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Sticky;
     private readonly InputAction m_Player_IceBeam;
     private readonly InputAction m_Player_ReturnToCore;
+    private readonly InputAction m_Player_Combine;
     public struct PlayerActions
     {
         private @InputController m_Wrapper;
@@ -435,6 +456,7 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @Sticky => m_Wrapper.m_Player_Sticky;
         public InputAction @IceBeam => m_Wrapper.m_Player_IceBeam;
         public InputAction @ReturnToCore => m_Wrapper.m_Player_ReturnToCore;
+        public InputAction @Combine => m_Wrapper.m_Player_Combine;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -471,6 +493,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @ReturnToCore.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToCore;
                 @ReturnToCore.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToCore;
                 @ReturnToCore.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnToCore;
+                @Combine.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCombine;
+                @Combine.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCombine;
+                @Combine.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCombine;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -502,6 +527,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @ReturnToCore.started += instance.OnReturnToCore;
                 @ReturnToCore.performed += instance.OnReturnToCore;
                 @ReturnToCore.canceled += instance.OnReturnToCore;
+                @Combine.started += instance.OnCombine;
+                @Combine.performed += instance.OnCombine;
+                @Combine.canceled += instance.OnCombine;
             }
         }
     }
@@ -568,6 +596,7 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnSticky(InputAction.CallbackContext context);
         void OnIceBeam(InputAction.CallbackContext context);
         void OnReturnToCore(InputAction.CallbackContext context);
+        void OnCombine(InputAction.CallbackContext context);
     }
     public interface ITestingActions
     {
