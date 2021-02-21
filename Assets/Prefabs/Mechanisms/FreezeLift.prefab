@@ -97,6 +97,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: FreezeLift
       objectReference: {fileID: 0}
+    - target: {fileID: 6198931612651053410, guid: cbda928becd53934c87361442eaa96cd,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198931612651053410, guid: cbda928becd53934c87361442eaa96cd,
+        type: 3}
+      propertyPath: harmful
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6845919366062277883, guid: cbda928becd53934c87361442eaa96cd,
         type: 3}
       propertyPath: m_Size.x

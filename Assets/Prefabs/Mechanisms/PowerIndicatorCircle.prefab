@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 850259365161593892}
+  - component: {fileID: 9168391628299535921}
   m_Layer: 0
   m_Name: Power Indicator
   m_TagString: Untagged
@@ -33,6 +34,21 @@ Transform:
   m_Father: {fileID: 1919946623779831717}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9168391628299535921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2514659877934228710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db18b1856ea02c54ab8a825e14742d33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSprite: {fileID: 4222015494678177722}
+  tempSprite: {fileID: 3013858056315467039}
+  offSprite: {fileID: 8121240014958104119}
 --- !u!1 &3013858056315467039
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +118,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -382683761
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 6368333199491000787, guid: 1ab6f2f143e9d1543b15630132656269,
     type: 3}
@@ -185,7 +201,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -382683761
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 9137260621059730206, guid: 1ab6f2f143e9d1543b15630132656269,
     type: 3}
@@ -208,6 +224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1919946623779831717}
+  - component: {fileID: 7691166157340624372}
   m_Layer: 0
   m_Name: PowerIndicatorCircle
   m_TagString: Untagged
@@ -230,6 +247,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7691166157340624372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555343496996103431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b0cf878d581241bdaa73be4daa980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  permConnections: []
+  tempConnection: {fileID: 0}
+  permActive: 0
+  active: 0
 --- !u!1 &8121240014958104119
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +332,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -382683761
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 8888614319044970587, guid: 1ab6f2f143e9d1543b15630132656269,
     type: 3}

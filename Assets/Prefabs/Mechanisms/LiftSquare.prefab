@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 3986899651532711552}
   - component: {fileID: 4459389373788118124}
   - component: {fileID: 6845919366062277883}
+  - component: {fileID: 6198931612651053410}
   m_Layer: 0
   m_Name: LiftSquare
   m_TagString: Untagged
@@ -139,6 +140,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6198931612651053410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661558380711908032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8f72890b6613f4eac1185223b1c98f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {fileID: 1657752601636654306}
+  target: {fileID: 5684487146095292010}
+  startActive: 1
+  speed: 2
+  harmful: 0
+  waitTime: 3
 --- !u!1 &4693397608049504271
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1312893961740155766}
+  - component: {fileID: 1450815821236982746}
   m_Layer: 0
   m_Name: LiftSquare
   m_TagString: Untagged
@@ -202,3 +222,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1450815821236982746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728786343355384296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b0cf878d581241bdaa73be4daa980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  permConnections: []
+  tempConnection: {fileID: 0}
+  permActive: 0
+  active: 0
