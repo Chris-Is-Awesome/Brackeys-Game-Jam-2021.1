@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: slimeData
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2597268018964707910, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Size.x
@@ -25,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Offset.y
-      value: 0.13
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
@@ -41,7 +46,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 6c53931b42f923141b0674b6c89b5a69, type: 2}
+      objectReference: {fileID: 22100000, guid: b9b2272e30da4a048a5563dd4198f48d,
+        type: 2}
     - target: {fileID: 5823752757051186485, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Sprite
@@ -107,6 +113,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487462838149944, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487462838149945, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: jumpForce
+      value: 37
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3282291870065318433, guid: 2344ad9dd306bfa41b948238cf35bdad, type: 3}

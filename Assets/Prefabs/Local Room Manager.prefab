@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 1907622711581196651}
   - component: {fileID: 3087458764192191205}
   m_Layer: 0
-  m_Name: PUT CODE IN THIS
+  m_Name: Items to Manage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9407d0db89165de4b82978a8944e7050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startLoaded: 0
+  minimumBounds: {fileID: 4881123123047382141}
+  maximumBounds: {fileID: 5167998110446582327}
 --- !u!1 &7168305701483443381
 GameObject:
   m_ObjectHideFlags: 0

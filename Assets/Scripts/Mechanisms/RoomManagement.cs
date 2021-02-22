@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class RoomManagement : MonoBehaviour
 {
+    [SerializeField] bool startLoaded = false;
+    [SerializeField] Transform minimumBounds;
+    [SerializeField] Transform maximumBounds;
+    CameraTargetScript cameraTarget;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!startLoaded) RoomLeft();
+        cameraTarget = (CameraTargetScript)FindObjectOfType(typeof(CameraTargetScript));
     }
 
     // Update is called once per frame
@@ -25,6 +31,8 @@ public class RoomManagement : MonoBehaviour
                 child.gameObject.SetActive(true);
             }
         }
+        cameraTarget.minBounds = minimumBounds;
+        cameraTarget.maxBounds = maximumBounds;
     }
 
     public void RoomLeft() //disable everything in the room

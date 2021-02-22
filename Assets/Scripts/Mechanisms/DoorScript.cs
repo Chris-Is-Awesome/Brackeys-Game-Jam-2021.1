@@ -12,6 +12,7 @@ public class DoorScript : MonoBehaviour
     void Start()
     {
         myRoom = transform.parent.transform.parent.GetComponent<RoomManagement>();
+        if (targetRoom == null) Debug.LogError("A door in " + myRoom.transform.parent.name + " is missing a target!");
     }
     
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class DoorScript : MonoBehaviour
             GameObject player = collision.gameObject;
             //Add combination code here
             player.transform.position = new Vector2(targetTeleport.transform.position.x, targetTeleport.transform.position.y);
-            myRoom.RoomEntered();
+            targetRoom.RoomEntered();
             myRoom.RoomLeft();
         }
     }

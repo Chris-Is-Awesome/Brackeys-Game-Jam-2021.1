@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582132609928525663}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8974487461533393079}
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 1582132609928525663}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8ff478c8af88c934995677dff80451a9, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0d575e3b5ba317645a03cd11cef69ba1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -140,7 +140,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.06999999}
+  m_Offset: {x: 0, y: -0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8974487461533393072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.71, y: -12.64, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8974487462838149947}
@@ -247,9 +247,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeData: {fileID: 11400000, guid: 270959f502e759a4e884858282663a38, type: 2}
-  core: 0
+  myCamera: {fileID: 0}
+  core: 1
   bomb: 0
   ice: 0
+  sticky: 0
   isActive: 0
   hasControls: 0
 --- !u!114 &3282291870065318433
@@ -327,7 +329,7 @@ MonoBehaviour:
   isDefault: 0
   isActive: 0
   isSolo: 0
-  jumpForce: 25
+  jumpForce: 30
   jumpTimeMax: 0.25
   jumpTime: 0
 --- !u!114 &8974487462838149944
