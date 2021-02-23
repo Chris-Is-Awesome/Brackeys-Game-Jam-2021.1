@@ -503,6 +503,7 @@ MonoBehaviour:
   activeSlimes: []
   foundBomb: 1
   foundIce: 1
+  foundSticky: 1
   activeCore: {fileID: 0}
   coreSize: 1
 --- !u!1 &1131085088532016784

@@ -8,6 +8,7 @@ public class ConnectionOutputScript : MonoBehaviour //This goes on outputs, like
     [SerializeField] ConnectionsInputScript tempConnection; //Temporariy connection, requires constant connection. Only one per output.
     public bool permActive;
     public bool active;
+    public bool isIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +36,19 @@ public class ConnectionOutputScript : MonoBehaviour //This goes on outputs, like
                     active = false;
                 }
             }
-            int connectionCount=0;
-            for (int i = 0; i < permConnections.Length; i++)
+            if (permConnections.Length > 0)
             {
-                if (permConnections[i].active) connectionCount++;
+                int connectionCount = 0;
+                for (int i = 0; i < permConnections.Length; i++)
+                {
+                    if (permConnections[i].active) connectionCount++;
+                }
+                if (connectionCount >= permConnections.Length)
+                {
+                    permActive = true;
+                    active = true;
+                }
             }
-            if (connectionCount >= permConnections.Length) permActive = true;
-            active = true;
         }
     }
 }
