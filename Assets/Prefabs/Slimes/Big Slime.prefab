@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 419837922015634558, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 419837922015634558, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2597268018964707910, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_LocalPosition.y
