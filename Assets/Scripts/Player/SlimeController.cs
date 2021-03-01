@@ -1,6 +1,7 @@
 /*
  * Author(s):
-	* Chris is Awesome
+	* Chris is Awesome (Main code)
+    * GameWyrm (Butchering)
  */
 
 using System;
@@ -16,14 +17,15 @@ public class SlimeController : MonoBehaviour
 	private InputController inputs;
 	private SlimeSwitcher slimeSwitcher;
 	private CinemachineVirtualCamera vCam;
+    [HideInInspector] public CameraTargetScript myCamera;
 	private Entity ent;
 
     [Header("Properties")]
     [SerializeField] bool core;
     [SerializeField] bool bomb;
     [SerializeField] bool ice;
+    [SerializeField] bool sticky; 
     Animator myAnim;
-    int coreSize=1;
 
 	[Header("Debug")]
 	[ReadOnly] public bool isActive;
@@ -44,7 +46,7 @@ public class SlimeController : MonoBehaviour
 
 		// Vars
 		slimeSwitcher = transform.parent.GetComponent<SlimeSwitcher>();
-		vCam = GameObject.Find("Cinemachine").GetComponent<CinemachineVirtualCamera>();
+		//vCam = GameObject.Find("Cinemachine").GetComponent<CinemachineVirtualCamera>();
 		ent = GetComponent<Entity>();
 
 		// Event subs
@@ -52,6 +54,7 @@ public class SlimeController : MonoBehaviour
 
         //GW stuff
         myAnim = GetComponentInChildren<Animator>();
+        myCamera = transform.parent.GetComponentInChildren<CameraTargetScript>();
 	}
 
 	private void OnDisable()
@@ -89,8 +92,10 @@ public class SlimeController : MonoBehaviour
             GameObject.Find("Player").transform.Find("Core Slime").GetComponent<SlimeController>(),
             GameObject.Find("Player").transform.Find("Bomb Slime").GetComponent<SlimeController>(),
             GameObject.Find("Player").transform.Find("Ice Slime").GetComponent<SlimeController>(),
+            GameObject.Find("Player").transform.Find("Sticky Slime").GetComponent<SlimeController>(),
             GameObject.Find("Player").transform.Find("Medium Slime").GetComponent<SlimeController>(),
-            GameObject.Find("Player").transform.Find("Big Slime").GetComponent<SlimeController>()
+            GameObject.Find("Player").transform.Find("Big Slime").GetComponent<SlimeController>(),
+            GameObject.Find("Player").transform.Find("Massive Slime").GetComponent<SlimeController>()
         };
 
         for (int i = 0; i < orderedSlimes.Count; i++)
@@ -118,7 +123,8 @@ public class SlimeController : MonoBehaviour
 		inputs.Enable();
 		hasControls = true;
 		isActive = true;
-		vCam.Follow = transform.Find("Sprite & Physics");
+        //vCam.Follow = transform.Find("Sprite & Physics");
+        myCamera.myTarget = transform.Find("Sprite & Physics");
 
 	}
 
@@ -135,6 +141,7 @@ public class SlimeController : MonoBehaviour
 
         GameObject mediumSlime = GameObject.Find("Player").transform.Find("Medium Slime").gameObject;
         GameObject bigSlime = GameObject.Find("Player").transform.Find("Big Slime").gameObject;
+        GameObject massiveSlime = GameObject.Find("Player").transform.Find("Massive Slime").gameObject;
         //
         int targetSize = 0;
         if (core)
@@ -155,34 +162,68 @@ public class SlimeController : MonoBehaviour
                 mediumSlime.GetComponent<SlimeController>().ice = true;
                 bigSlime.GetComponent<SlimeController>().ice = true;
             }
+            if (slimeSwitcher.foundSticky)
+            {
+                GameObject stickySlime = slimeSwitcher.transform.Find("Sticky Slime").gameObject;
+                targetSize++;
+                stickySlime.SetActive(false);
+                mediumSlime.GetComponent<SlimeController>().sticky = true;
+                bigSlime.GetComponent<SlimeController>().sticky = true;
+            }
             if (targetSize==1)
             {
                 if (slimeSwitcher.coreSize == 1)
                 {
                     mediumSlime.SetActive(true);
-                    mediumSlime.transform.position = transform.position;
+                    mediumSlime.transform.position = GameObject.Find("Sprite & Physics").transform.position;
                     mediumSlime.GetComponent<SlimeController>().TakeControl();
                     slimeSwitcher.coreSize = 2;
                     slimeSwitcher.activeCore = mediumSlime;
                 }
-                else if (slimeSwitcher.coreSize ==2)
+                else if (slimeSwitcher.coreSize == 2)
                 {
                     bigSlime.SetActive(true);
-                    bigSlime.transform.position = transform.position;
+                    bigSlime.transform.position = GameObject.Find("Sprite & Physics").transform.position;
                     bigSlime.GetComponent<SlimeController>().TakeControl();
                     slimeSwitcher.coreSize = 3;
                     slimeSwitcher.activeCore = bigSlime;
                 }
+                else if (slimeSwitcher.coreSize == 3)
+                {
+                    massiveSlime.SetActive(true);
+                    massiveSlime.transform.position = GameObject.Find("Sprite & Physics").transform.position;
+                    massiveSlime.GetComponent<SlimeController>().TakeControl();
+                    slimeSwitcher.coreSize = 4;
+                    slimeSwitcher.activeCore = massiveSlime;
+                }
             }
-            if (targetSize==2)
+            else if (targetSize==2)
             {
-                bigSlime.SetActive(true);
-                bigSlime.transform.position = transform.position;
-                bigSlime.GetComponent<SlimeController>().TakeControl();
-                slimeSwitcher.coreSize = 3;
-                slimeSwitcher.activeCore = bigSlime;
+                if (slimeSwitcher.coreSize == 1)
+                {
+                    bigSlime.SetActive(true);
+                    bigSlime.transform.position = GameObject.Find("Sprite & Physics").transform.position;
+                    bigSlime.GetComponent<SlimeController>().TakeControl();
+                    slimeSwitcher.coreSize = 3;
+                    slimeSwitcher.activeCore = bigSlime;
+                }
+                else if (slimeSwitcher.coreSize == 2)
+                {
+                    massiveSlime.SetActive(true);
+                    massiveSlime.transform.position = GameObject.Find("Sprite & Physics").transform.position;
+                    massiveSlime.GetComponent<SlimeController>().TakeControl();
+                    slimeSwitcher.coreSize = 4;
+                    slimeSwitcher.activeCore = massiveSlime;
+                }
             }
-            slimeSwitcher.UpdateActiveSlimes();
+            else if (targetSize==3)
+            {
+                    massiveSlime.SetActive(true);
+                    massiveSlime.transform.position = GameObject.Find("Sprite & Physics").transform.position;
+                    massiveSlime.GetComponent<SlimeController>().TakeControl();
+                    slimeSwitcher.coreSize = 4;
+                    slimeSwitcher.activeCore = massiveSlime;
+            }
             gameObject.SetActive(false);
         }
         if (gameObject==slimeSwitcher.transform.Find("Bomb Slime").gameObject)
@@ -190,7 +231,7 @@ public class SlimeController : MonoBehaviour
             if (slimeSwitcher.coreSize == 1)
             {
                 mediumSlime.SetActive(true);
-                mediumSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                mediumSlime.transform.position = slimeSwitcher.activeCore.transform.Find("Sprite & Physics").transform.position;
                 mediumSlime.GetComponent<SlimeController>().TakeControl();
                 mediumSlime.GetComponent<SlimeController>().bomb = true;
                 slimeSwitcher.coreSize = 2;
@@ -200,12 +241,21 @@ public class SlimeController : MonoBehaviour
             else if (slimeSwitcher.coreSize == 2)
             {
                 bigSlime.SetActive(true);
-                bigSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                bigSlime.transform.position = slimeSwitcher.activeCore.transform.Find("Sprite & Physics").transform.position;
                 bigSlime.GetComponent<SlimeController>().TakeControl();
                 bigSlime.GetComponent<SlimeController>().bomb = true;
                 slimeSwitcher.coreSize = 3;
                 slimeSwitcher.activeCore.SetActive(false);
                 slimeSwitcher.activeCore = bigSlime;
+            }
+            else if (slimeSwitcher.coreSize == 3)
+            {
+                massiveSlime.SetActive(true);
+                massiveSlime.transform.position = slimeSwitcher.activeCore.transform.Find("Sprite & Physics").transform.position;
+                massiveSlime.GetComponent<SlimeController>().TakeControl();
+                slimeSwitcher.coreSize = 4;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = massiveSlime;
             }
             gameObject.SetActive(false);
         }
@@ -231,11 +281,52 @@ public class SlimeController : MonoBehaviour
                 slimeSwitcher.activeCore.SetActive(false);
                 slimeSwitcher.activeCore = bigSlime;
             }
+            else if (slimeSwitcher.coreSize == 3)
+            {
+                massiveSlime.SetActive(true);
+                massiveSlime.transform.position = slimeSwitcher.activeCore.transform.Find("Sprite & Physics").transform.position;
+                massiveSlime.GetComponent<SlimeController>().TakeControl();
+                slimeSwitcher.coreSize = 4;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = massiveSlime;
+            }
+            gameObject.SetActive(false);
+        }
+        if (gameObject == slimeSwitcher.transform.Find("Sticky Slime").gameObject)
+        {
+            if (slimeSwitcher.coreSize == 1)
+            {
+                mediumSlime.SetActive(true);
+                mediumSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                mediumSlime.GetComponent<SlimeController>().TakeControl();
+                mediumSlime.GetComponent<SlimeController>().sticky = true;
+                slimeSwitcher.coreSize = 2;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = mediumSlime;
+            }
+            else if (slimeSwitcher.coreSize == 2)
+            {
+                bigSlime.SetActive(true);
+                bigSlime.transform.position = slimeSwitcher.activeCore.transform.position;
+                bigSlime.GetComponent<SlimeController>().TakeControl();
+                bigSlime.GetComponent<SlimeController>().sticky = true;
+                slimeSwitcher.coreSize = 3;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = bigSlime;
+            }
+            else if (slimeSwitcher.coreSize == 3)
+            {
+                massiveSlime.SetActive(true);
+                massiveSlime.transform.position = slimeSwitcher.activeCore.transform.Find("Sprite & Physics").transform.position;
+                massiveSlime.GetComponent<SlimeController>().TakeControl();
+                slimeSwitcher.coreSize = 4;
+                slimeSwitcher.activeCore.SetActive(false);
+                slimeSwitcher.activeCore = massiveSlime;
+            }
             gameObject.SetActive(false);
         }
 
-
-        transform.parent.GetComponent<SlimeSwitcher>().UpdateActiveSlimes();
+        slimeSwitcher.UpdateActiveSlimes();
 	}
 
 	private void SwitchSlime(SlimeController slime)

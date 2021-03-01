@@ -28,7 +28,10 @@ public class LiftScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startActive) active = myOutput.active;
+        if (!startActive)
+        {
+            active = myOutput.active;
+        }
     }
 
     void FixedUpdate()

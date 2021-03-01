@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 419837922015634558, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 419837922015634558, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597268018964707910, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5516164188748065750, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Size.x
@@ -36,7 +51,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b54f1e1bc1f2c8446924785afd25b995, type: 2}
+      objectReference: {fileID: 22100000, guid: 2e18f4f8a2b72f34ab975d6f6cc34c2c,
+        type: 2}
     - target: {fileID: 5823752757051186485, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Sprite
@@ -102,6 +118,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487462838149944, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: speed
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8974487462838149945, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: jumpForce
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2344ad9dd306bfa41b948238cf35bdad, type: 3}

@@ -56,7 +56,7 @@ public class PressurePlateScript : MonoBehaviour
                 weightSprite.SetActive(false);
                 offSprite.SetActive(true);
             }
-            myInput.Activate();
+            myInput.Activate(false);
         }
         }
     }

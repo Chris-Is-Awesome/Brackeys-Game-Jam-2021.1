@@ -11,8 +11,9 @@ public class SlimeSwitcher : MonoBehaviour
 {
 	[ReadOnly] [SerializeField] List<SlimeController> activeSlimes = new List<SlimeController>();
 
-    [SerializeField] public bool foundBomb = false;
-    [SerializeField] public bool foundIce = false;
+    public bool foundBomb = false;
+    public bool foundIce = false;
+    public bool foundSticky = false;
     public GameObject activeCore;
     [ReadOnly] public int coreSize = 1;
 

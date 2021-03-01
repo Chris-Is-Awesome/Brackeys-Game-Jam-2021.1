@@ -7,17 +7,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6258417831459068125, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: ice
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6258417831459068125, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: core
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5574008653955343474, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f25b31d0225a1934b8cb854168314261, type: 2}
+      objectReference: {fileID: 22100000, guid: 00eeae034c4c20d4d9939a603cccdc6d,
+        type: 2}
     - target: {fileID: 5823752757051186485, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 5996868167954208038, guid: e5ac23598a8587642b9965494ff4121a,
         type: 3}
+    - target: {fileID: 5823752757051186485, guid: 2344ad9dd306bfa41b948238cf35bdad,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8974487461533393072, guid: 2344ad9dd306bfa41b948238cf35bdad,
         type: 3}
       propertyPath: m_Name
